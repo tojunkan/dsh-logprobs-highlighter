@@ -130,22 +130,31 @@ function PlainMessage({ blocks, interrupted }) {
   );
 }
 
+/** 单个 text 块：mdast 解析缓存（SUG-2/t15）+ 逐 token 着色。 */
+function TextBlock({ text, ctx }) {
+  const tree = useMemo(() => parseMarkdown(text), [text]);
+  return (
+    <div style={{ marginBottom: "6px" }}>
+      {mdastToReact(tree, h, ctx, "m")}
+    </div>
+  );
+}
+
 /** settled：mdast 自渲染 + 逐 token 着色。 */
 function SettledMessage({ blocks, textTokens, loadImage }) {
-  const matcher = useMemo(() => createTokenMatcher(textTokens), [textTokens]);
+  const arr = Array.isArray(blocks) ? blocks : [];
+  // IMP-1（t15）：把整条消息的 text 块拼接喂给 matcher——捕获 token 可能含
+  // "文本块外内容"（图片 markdown 字符被抽成 image 块），setAllText 后这类
+  // token 会被跳过而不卡死游标，图片之后的正文仍能上色。
+  const allText = useMemo(() => arr.filter((b) => b.kind === "text").map((b) => b.text ?? "").join(""), [arr]);
+  const matcher = useMemo(() => createTokenMatcher(textTokens).setAllText(allText), [textTokens, allText]);
   const renderToken = (seg, key) => <TokenSpan key={key} seg={seg} />;
   const ctx = { matcher, renderToken };
-  const arr = Array.isArray(blocks) ? blocks : [];
   const out = [];
   for (let i = 0; i < arr.length; i++) {
     const b = arr[i];
     if (b.kind === "text") {
-      const tree = parseMarkdown(b.text);
-      out.push(
-        <div key={`txt${i}`} style={{ marginBottom: "6px" }}>
-          {mdastToReact(tree, h, ctx, `m${i}`)}
-        </div>
-      );
+      out.push(<TextBlock key={`txt${i}`} text={b.text} ctx={ctx} />);
     } else if (b.kind === "reasoning") {
       out.push(<ReasoningBlock key={`rs${i}`} block={b} />);
     } else if (b.kind === "image") {

@@ -86,11 +86,17 @@ export function mdastToReact(node, h, ctx, keyPrefix = "") {
       // 行内码：正常上色（API 名/标识符常出现在此处，属高价值）
       return h("code", { key: keyPrefix }, renderTextNode(node.value, false));
     case "link":
-      return h(
-        "a",
-        { key: keyPrefix, href: node.url ?? "#", title: node.title ?? undefined, target: "_blank", rel: "noreferrer" },
-        ...inlineChildren(node, h, ctx, keyPrefix)
-      );
+      // IMP-2（t15）：href scheme 白名单——仅 http/https/mailto 渲染为可点击
+      // <a>；javascript:/data: 等其余一律渲染为纯文本 <span>（提示注入可构造
+      // 可点击危险链接，与 image 的 http(s) 白名单、html 节点跳过同一安全基线）。
+      if (/^(https?:|mailto:)/i.test(node.url ?? "")) {
+        return h(
+          "a",
+          { key: keyPrefix, href: node.url, title: node.title ?? undefined, target: "_blank", rel: "noreferrer" },
+          ...inlineChildren(node, h, ctx, keyPrefix)
+        );
+      }
+      return h("span", { key: keyPrefix, title: node.title ?? undefined }, ...inlineChildren(node, h, ctx, keyPrefix));
     case "image":
       // mdast 内联图片：仅 http(s) 渲染 <img>，否则占位文本（不引入未信任协议）
       if (/^https?:\/\//i.test(node.url || "")) {

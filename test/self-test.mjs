@@ -35,6 +35,7 @@ import {
   isCodeToken, mergeImageGroups,
 } from "../lib/client-utils.js";
 import { parseMarkdown, mdastToReact } from "../src/client/markdown.js";
+import { fetchTokenData, resetTokenCache } from "../src/client/tokens-core.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const BASE = "/plugins/logprobs-highlighter";
@@ -771,14 +772,14 @@ console.log("\nPart D2 — M3.5 渲染纯函数（token 匹配 / 代码着色 / 
     const segs2 = m2.match("a深b圳c");
     check("D2: 交错纯文本", segs2.map((s) => s.type).join(",") === "text,token,text,token,text" && segs2.map((s) => s.value).join("") === "a深b圳c");
 
-    const m3 = createTokenMatcher([{ text: "深" }, { text: "圳" }, { text: "市" }, { text: "中" }, { text: "心" }]);
+    const m3 = createTokenMatcher([{ text: "深" }, { text: "圳" }, { text: "市" }, { text: "中" }, { text: "心" }]).setAllText("深圳市中心");
     const s1 = m3.match("深圳市");
     const s2 = m3.match("中心");
     check("D2: 跨文本段游标推进", s1.length === 3 && s2.length === 2 && m3.remaining === 0);
 
-    const m4 = createTokenMatcher([{ text: "深" }, { text: "圳" }, { text: "市" }]);
+    const m4 = createTokenMatcher([{ text: "深" }, { text: "圳" }, { text: "市" }]).setAllText("深圳市中心");
     const s3 = m4.match("深圳");
-    check("D2: token 不属于本段 → 停止", s3.length === 2 && m4.remaining === 1);
+    check("D2: token 属于后续文本 → 停止不吞并", s3.length === 2 && m4.remaining === 1);
 
     const m5 = createTokenMatcher([{ text: "const" }, { text: " " }, { text: "x" }, { text: "=" }, { text: "1" }]);
     const s4 = m5.match("const x = 1", { codeOnly: true });
@@ -838,6 +839,97 @@ console.log("\nPart D2 — M3.5 渲染纯函数（token 匹配 / 代码着色 / 
     const r4 = mdastToReact(tree4, hStub, { matcher: null }, "k");
     check("D2: 原始 HTML 跳过（不渲染 script）", tags(r4).includes("script") === false);
     check("D2: html 后段落保留", textOf(r4).includes("plain"));
+  }
+}
+
+console.log("\nPart D3 — t15 重要项回归（真实回放 / 卡死游标 / link 白名单 / 共享缓存，本地自测）");
+{
+  // IMP-4①: 真实样本 matcher 回放（拼接逐字符一致 + 全消费）
+  for (const [file, expectTokens] of [["docs/m0-sample-nothinking.json", 61], ["docs/m0-sample-thinking.json", 24]]) {
+    const s = JSON.parse(readFileSync(path.join(ROOT, file), "utf8"));
+    const toks = [];
+    let text = "";
+    for (const c of s.chunks) {
+      const j = JSON.parse(c.raw);
+      const delta = j.choices?.[0]?.delta ?? {};
+      const lp = j.choices?.[0]?.logprobs;
+      if (typeof delta.content === "string" && delta.content.length > 0) {
+        for (const t of lp?.content ?? []) toks.push(t.token);
+        text += delta.content;
+      }
+    }
+    const m = createTokenMatcher(toks.map((t) => ({ text: t }))).setAllText(text);
+    const segs = m.match(text);
+    check(`D3: ${file.split("/").pop()} 真实回放——${expectTokens} tokens 全消费`, toks.length === expectTokens && m.remaining === 0);
+    check(`D3: ${file.split("/").pop()} 真实回放——拼接逐字符一致`, segs.map((x) => x.value).join("") === text);
+  }
+
+  // IMP-1 回归: 图片 markdown 字符在捕获 token 中但不在任何 text 块 → 不卡死游标
+  {
+    const tokens = [
+      { text: "先" }, { text: "!" }, { text: "[" }, { text: "图" }, { text: "]" }, { text: "(" }, { text: "x" }, { text: ")" },
+      { text: "后" }, { text: "续" }, { text: "文" }, { text: "字" },
+    ];
+    const allText = "先后续文字"; // text 块拼接（图片字符被抽成 image 块，不在其中）
+    const m = createTokenMatcher(tokens).setAllText(allText);
+    const s1 = m.match("先");
+    const s2 = m.match("后续文字");
+    check("D3: 图片字符 token 被跳过（不卡死游标）", s1.filter((x) => x.type === "token").map((x) => x.value).join("") === "先");
+    check("D3: 图片之后的文本块仍上色", s2.filter((x) => x.type === "token").map((x) => x.value).join("") === "后续文字");
+    check("D3: 全部真实 token 消费完（remaining=0）", m.remaining === 0);
+  }
+
+  // IMP-2 回归: link scheme 白名单
+  {
+    const hStub = (tag, props, ...children) => ({ tag, props: props || {}, children: children.flat(Infinity).filter((c) => c !== null && c !== undefined) });
+    const flattenNodes = (x) => (Array.isArray(x) ? x : x ? [x] : []);
+    const hrefs = (x) => {
+      const out = [];
+      for (const n of flattenNodes(x)) {
+        if (n && typeof n === "object" && n.tag) {
+          if (n.tag === "a" && n.props && typeof n.props.href === "string") out.push(n.props.href);
+          out.push(...hrefs(n.children || []));
+        }
+      }
+      return out;
+    };
+    const tBad = parseMarkdown("[x](javascript:alert(1)) 与 [y](data:text/html,hi)");
+    const rBad = mdastToReact(tBad, hStub, { matcher: null }, "k");
+    check("D3: javascript:/data: link 不渲染为 <a href>", hrefs(rBad).length === 0);
+    const tGood = parseMarkdown("[ok](https://ok.example) 与 [mail](mailto:a@b.c)");
+    const rGood = mdastToReact(tGood, hStub, { matcher: null }, "k");
+    check("D3: http/mailto link 正常渲染", hrefs(rGood).length === 2 && hrefs(rGood)[0] === "https://ok.example");
+  }
+
+  // IMP-3 回归: 共享缓存（同键并发只发一次 / 结果缓存 / 失败与 assoc-pending 不缓存）
+  {
+    const realFetch = globalThis.fetch;
+    let calls = 0;
+    try {
+      resetTokenCache();
+      globalThis.fetch = async () => { calls++; return { status: 200, json: async () => ({ ok: true, captured: true, blocks: [] }) }; };
+      const [a, b] = await Promise.all([fetchTokenData("sess-c", 1, 2), fetchTokenData("sess-c", 1, 2)]);
+      check("D3: 并发同键只发一次请求", calls === 1 && a.body.captured === true && b.body.captured === true);
+      const c = await fetchTokenData("sess-c", 1, 2);
+      check("D3: 结果缓存命中（仍 1 次请求）", calls === 1 && c.body.captured === true);
+
+      resetTokenCache();
+      calls = 0;
+      globalThis.fetch = async () => { calls++; throw new Error("boom"); };
+      await fetchTokenData("sess-c", 1, 2).catch(() => {});
+      await fetchTokenData("sess-c", 1, 2).catch(() => {});
+      check("D3: 失败不缓存（允许重试）", calls === 2);
+
+      resetTokenCache();
+      calls = 0;
+      globalThis.fetch = async () => { calls++; return { status: 200, json: async () => ({ ok: true, captured: false, notCapturedReason: "assoc-pending" }) }; };
+      await fetchTokenData("sess-c", 1, 2);
+      await fetchTokenData("sess-c", 1, 2);
+      check("D3: assoc-pending 不缓存（每次新请求）", calls === 2);
+    } finally {
+      globalThis.fetch = realFetch;
+      resetTokenCache();
+    }
   }
 }
 

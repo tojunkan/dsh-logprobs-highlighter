@@ -46,6 +46,14 @@ node test/self-test.mjs         # 134+ 断言全绿（含 D2 mdast/匹配器单�
    自动切换为热力图（keyed 槽快照驱动重渲染）。
 7. **面板共存**：turnTail 面板（M3 总览）仍在消息下方，与正文热力图数据一致。
 8. 无捕获/非 DeepSeek 消息：正文按普通 markdown 渲染（无着色），不破坏阅读。
+9. **含图片/多文本块消息（t15 IMP-1 回归）**：让模型生成含图片的消息（如"画一张
+   …并解释"），确认图片之后的正文**仍逐 token 上色**（图片 markdown 字符被抽成
+   image 块，不卡死 token 匹配游标；t15 已修 + 回归测试锁定）。
+10. **长文性能（t15 SUG-1）**：发一条长文消息（数百 token），检查正文渲染与 hover
+    是否卡顿；若卡顿，只对"有 top 备选/可疑"token 包 HoverCard（其余纯 span + title）。
+11. **assoc 事件形状核对（t15 SUG-3）**：首次联调时设 `DSH_LPH_DEBUG_ASSOC=1`，
+    核对 `findClosingAssistantStep` 读取的 `turn.steps` 结构与 `assistant/message`
+    事件载荷一致（面板 key 推导依赖该结构）。
 
 ## 3. 验收点（对照 README §8 M3.5 行）
 

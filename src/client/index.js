@@ -15,7 +15,16 @@ import { AssistantStepView } from "./highlighter.js";
 
 export const inject = ["conversationEvents", "slots", "sessions"];
 
+// SUG-5（t15）：HMR 重载时同一 ctx 可能重复 apply → 同 key 同 priority 重复注册
+// 会 throw。模块级标记做幂等：重复 apply 直接跳过（并提示刷新页面以重新挂载）。
+let applied = false;
+
 export function apply(ctx) {
+  if (applied) {
+    console.warn("[logprobs-highlighter] apply 重复调用（HMR 重载），跳过重复注册；若热力图失效请刷新页面");
+    return;
+  }
+  applied = true;
   // 注册 turnTail chain 槽（M3 面板）；select 为 chain 专属纯函数，只收 owner
   // props {turn, seq, openFile}（t14 §5：ChainSelect = (owner) => M | null；
   // ui-conversation client.js:9283-9287 实证），返回 {turn, seq} 成为组件 matched。

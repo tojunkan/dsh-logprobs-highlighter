@@ -1,21 +1,17 @@
 /**
  * logprobs-highlighter — 客户端共享数据 hook：按 (sessionId, turn, step) 拉取 tokens
  *
- * 面板（panel.js）与正文热力图（highlighter.js）共用；assoc-pending 退避重取
- * （I4：首次 + 3 次退避 500ms/1s/2s）。阶段：
- *   idle    — 未启用（缺 key / 流式未结算）
- *   loading — 请求中
- *   ok      — captured:true，data 为 /tokens 响应
- *   empty   — captured:false，data.reason 为 notCapturedReason 枚举（或 no-key）
- *   error   — 数据通道异常
+ * 面板（panel.js）与正文热力图（highlighter.js）共用；缓存/请求逻辑在
+ * tokens-core.js（共享缓存 IMP-3：in-flight 去重 + 结果短缓存，assoc-pending
+ * 退避重取 3 次 I4）。阶段：idle / loading / ok / empty / error。
  *
  * @module logprobs-highlighter/client/tokens
  */
 
 import { useEffect, useState } from "react";
+import { fetchTokenData, MAX_ATTEMPTS, RETRY_DELAYS } from "./tokens-core.js";
 
-const RETRY_DELAYS = [500, 1000, 2000];
-const MAX_ATTEMPTS = RETRY_DELAYS.length + 1;
+export { resetTokenCache, fetchTokenData } from "./tokens-core.js";
 
 export function useTokens(sessionId, turn, step, enabled = true) {
   const [state, setState] = useState({ phase: "idle", data: null });
@@ -32,15 +28,11 @@ export function useTokens(sessionId, turn, step, enabled = true) {
       if (cancelled) return;
       attempt++;
       setState((s) => ({ ...s, phase: "loading" }));
-      const url =
-        `/plugins/logprobs-highlighter/tokens?session=${encodeURIComponent(sessionId)}` +
-        `&turn=${encodeURIComponent(turn)}&step=${encodeURIComponent(step)}`;
       try {
-        const res = await fetch(url, { cache: "no-store" });
-        const body = await res.json();
+        const { status, body } = await fetchTokenData(sessionId, turn, step);
         if (cancelled) return;
         if (!body || body.ok !== true) {
-          setState({ phase: "error", data: { message: `数据通道异常（HTTP ${res.status}）` } });
+          setState({ phase: "error", data: { message: `数据通道异常（HTTP ${status}）` } });
           return;
         }
         if (body.captured === true) {
