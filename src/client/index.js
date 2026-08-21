@@ -11,6 +11,7 @@
  */
 
 import { LogprobsTurnTail } from "./panel.js";
+import { AssistantStepView } from "./highlighter.js";
 
 export const inject = ["conversationEvents", "slots", "sessions"];
 
@@ -28,5 +29,19 @@ export function apply(ctx) {
     );
   } catch (err) {
     console.warn("[logprobs-highlighter] turnTail 注册失败（联调时修正）:", err);
+  }
+
+  // M3.5：shadow assistant-step 正文逐 token 热力图。keyed 槽无 select（t14 §5.4），
+  // 分发靠 entryKey；priority:-10 严格低于默认 0（同 key 同 priority 会 throw）。
+  try {
+    ctx.slots.inject("conversation.chat.node", () =>
+      ctx.slots.register({
+        name: "conversation.chat.node",
+        key: "assistant-step",
+        priority: -10,
+      }, AssistantStepView)
+    );
+  } catch (err) {
+    console.warn("[logprobs-highlighter] assistant-step shadow 注册失败（联调时修正）:", err);
   }
 }

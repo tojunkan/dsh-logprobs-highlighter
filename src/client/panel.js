@@ -25,7 +25,7 @@
  * @module logprobs-highlighter/client/panel
  */
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   tokenHue,
   formatConfidence,
@@ -36,10 +36,7 @@ import {
   reasoningStateText,
   findClosingAssistantStep,
 } from "../../lib/client-utils.js";
-
-/** I4：assoc-pending 退避重试延迟（首次 + 3 次）。 */
-const RETRY_DELAYS = [500, 1000, 2000];
-const MAX_ATTEMPTS = RETRY_DELAYS.length + 1;
+import { useTokens } from "./tokens.js";
 
 const GRAY = "#9ca3af";
 const styles = {
@@ -182,51 +179,10 @@ function SuspiciousRow({ token, reasons }) {
 export function LogprobsTurnTail(props) {
   const { turn, sessionId } = props;
   const key = useMemo(() => findClosingAssistantStep(turn), [turn]);
-  const [state, setState] = useState({ phase: "idle", data: null });
+  const enabled = !!key && key.turn !== null && key.step !== null;
+  // 共享数据 hook（assoc-pending 退避重取 3 次，I4；逻辑见 src/client/tokens.js）
+  const state = useTokens(sessionId, enabled ? key.turn : null, enabled ? key.step : null, enabled);
   const [expanded, setExpanded] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    if (!key || key.turn === null || key.step === null) {
-      setState({ phase: "empty", data: { reason: "no-step" } });
-      return () => { cancelled = true; };
-    }
-    let attempt = 0;
-    let timer = null;
-    const tryFetch = async () => {
-      if (cancelled) return;
-      attempt++;
-      setState((s) => ({ ...s, phase: "loading" }));
-      const url = `/plugins/logprobs-highlighter/tokens?session=${encodeURIComponent(sessionId)}&turn=${key.turn}&step=${key.step}`;
-      try {
-        const res = await fetch(url, { cache: "no-store" });
-        const body = await res.json();
-        if (cancelled) return;
-        if (!body || body.ok !== true) {
-          setState({ phase: "error", data: { message: `数据通道异常（HTTP ${res.status}）` } });
-          return;
-        }
-        if (body.captured === true) {
-          setState({ phase: "ok", data: body });
-          return;
-        }
-        // captured:false —— assoc-pending 退避重试（I4）；其余直接显示原因
-        if (body.notCapturedReason === "assoc-pending" && attempt < MAX_ATTEMPTS) {
-          timer = setTimeout(tryFetch, RETRY_DELAYS[attempt - 1]);
-          return;
-        }
-        setState({ phase: "empty", data: { reason: body.notCapturedReason ?? "not-found", retried: attempt - 1 } });
-      } catch {
-        if (cancelled) return;
-        setState({ phase: "error", data: { message: "无法连接数据通道（/tokens fetch 失败）" } });
-      }
-    };
-    void tryFetch();
-    return () => {
-      cancelled = true;
-      if (timer) clearTimeout(timer);
-    };
-  }, [key, sessionId]);
 
   const { phase, data } = state;
   const tokens = phase === "ok" && data ? (data.blocks || []).find((b) => b.role === "text")?.tokens ?? [] : [];

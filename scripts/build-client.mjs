@@ -46,7 +46,10 @@ const result = await build({
   entryPoints: [path.join(ROOT, "src", "client", "index.js")],
   bundle: true,
   format: "cjs",
-  platform: "browser",
+  // neutral：decode-named-character-reference 等依赖在 browser platform 会解析到
+  // DOM 版（模块初始化即 document.createElement，Node 冒烟不可用）；neutral 取
+  // 同构纯 JS 版，浏览器与 Node 均可加载。本 bundle 无 node 内建依赖。
+  platform: "neutral",
   target: ["es2020"],
   external: SEEDS,
   loader: { ".js": "jsx" }, // 源码为 .js 内含 JSX（src/client/panel.js）

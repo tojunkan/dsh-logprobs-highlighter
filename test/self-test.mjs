@@ -31,8 +31,10 @@ import { createAssociator } from "../lib/assoc.js";
 import {
   clamp, logprobToHue, tokenHue, formatConfidence, formatLogprob,
   isSuspiciousToken, topBarData, capturedReasonText, reasoningStateText,
-  findClosingAssistantStep,
+  findClosingAssistantStep, createTokenMatcher, isCodeIdentifier, isCodeNumber,
+  isCodeToken, mergeImageGroups,
 } from "../lib/client-utils.js";
+import { parseMarkdown, mdastToReact } from "../src/client/markdown.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const BASE = "/plugins/logprobs-highlighter";
@@ -748,6 +750,95 @@ console.log("\nPart D — client-utils（M3 纯函数，本地自测）");
   const key = findClosingAssistantStep(turn);
   check("D: findClosingAssistantStep 取含文本的最后一步", key.turn === 25 && key.step === 2 && key.messageId === "m-last" && key.seq === 30);
   check("D: findClosingAssistantStep 空输入 → null", findClosingAssistantStep(null) === null && findClosingAssistantStep({ steps: [] }) === null);
+}
+
+console.log("\nPart D2 — M3.5 渲染纯函数（token 匹配 / 代码着色 / mdast 渲染器，本地自测）");
+{
+  // 代码 token 判定（README §6.3：数字/标识符上色，语法符号永不）
+  check("D2: 标识符命中", isCodeIdentifier("getUserById") && isCodeIdentifier("_tmp") && isCodeIdentifier("$x") && !isCodeIdentifier("("));
+  check("D2: 数字命中", isCodeNumber("2024") && isCodeNumber("3.2.1") && isCodeNumber("-5") && !isCodeNumber("abc"));
+  check("D2: 语法符号不命中", isCodeToken("(") === false && isCodeToken("=") === false && isCodeToken("。") === false && isCodeToken(" ") === false);
+  check("D2: 关键字按标识符处理", isCodeToken("const") && isCodeToken("return"));
+
+  // 增量 token 匹配器（M0 对齐：token 拼接 === 正文）
+  {
+    const m = createTokenMatcher([{ text: "深" }, { text: "圳" }, { text: "市" }]);
+    const segs = m.match("深圳市");
+    check("D2: 全匹配 → 3 个 token 段", segs.length === 3 && segs.every((s) => s.type === "token") && m.remaining === 0);
+    check("D2: 拼接还原正文", segs.map((s) => s.value).join("") === "深圳市");
+
+    const m2 = createTokenMatcher([{ text: "深" }, { text: "圳" }]);
+    const segs2 = m2.match("a深b圳c");
+    check("D2: 交错纯文本", segs2.map((s) => s.type).join(",") === "text,token,text,token,text" && segs2.map((s) => s.value).join("") === "a深b圳c");
+
+    const m3 = createTokenMatcher([{ text: "深" }, { text: "圳" }, { text: "市" }, { text: "中" }, { text: "心" }]);
+    const s1 = m3.match("深圳市");
+    const s2 = m3.match("中心");
+    check("D2: 跨文本段游标推进", s1.length === 3 && s2.length === 2 && m3.remaining === 0);
+
+    const m4 = createTokenMatcher([{ text: "深" }, { text: "圳" }, { text: "市" }]);
+    const s3 = m4.match("深圳");
+    check("D2: token 不属于本段 → 停止", s3.length === 2 && m4.remaining === 1);
+
+    const m5 = createTokenMatcher([{ text: "const" }, { text: " " }, { text: "x" }, { text: "=" }, { text: "1" }]);
+    const s4 = m5.match("const x = 1", { codeOnly: true });
+    check("D2: 代码块保守着色（只标 const/x/1）", s4.map((s) => s.value).join("") === "const x = 1" && s4.filter((s) => s.type === "token").map((s) => s.value).join(",") === "const,x,1");
+  }
+
+  // 图片组合并
+  {
+    const blocks = [
+      { kind: "text", text: "a" },
+      { kind: "image", attachment: {} },
+      { kind: "image", attachment: {} },
+      { kind: "reasoning", text: "r" },
+      { kind: "image", attachment: {} },
+    ];
+    const groups = mergeImageGroups(blocks);
+    check("D2: 连续 image 合并为一组", groups.length === 2 && groups[0].length === 2 && groups[1].length === 1);
+  }
+
+  // mdast 渲染器（注入测试桩 h，纯函数验证结构）
+  {
+    const hStub = (tag, props, ...children) => ({ tag, props: props || {}, children: children.flat(Infinity).filter((c) => c !== null && c !== undefined) });
+    const flattenNodes = (x) => (Array.isArray(x) ? x : x ? [x] : []);
+    const tags = (x) => {
+      const out = [];
+      for (const n of flattenNodes(x)) {
+        if (n && typeof n === "object" && n.tag) {
+          out.push(n.tag);
+          out.push(...tags(n.children || []));
+        }
+      }
+      return out;
+    };
+    const textOf = (x) => {
+      let s = "";
+      for (const n of flattenNodes(x)) {
+        if (typeof n === "string") s += n;
+        else if (n && typeof n === "object") s += textOf(n.children || []);
+      }
+      return s;
+    };
+
+    const tree1 = parseMarkdown("# 标题\n\n**粗体** 与 `行内码`");
+    const r1 = mdastToReact(tree1, hStub, { matcher: null }, "k");
+    check("D2: mdast heading+strong+inlineCode 结构", tags(r1).includes("h1") && tags(r1).includes("strong") && tags(r1).includes("code"));
+
+    const tree2 = parseMarkdown("```js\nconst x = 1;\n```");
+    const matcher = createTokenMatcher([{ text: "const" }, { text: " " }, { text: "x" }, { text: " " }, { text: "=" }, { text: " " }, { text: "1" }, { text: ";" }]);
+    const r2 = mdastToReact(tree2, hStub, { matcher, renderToken: (seg, key) => ({ tag: "span", props: { key }, children: [seg.value] }) }, "k");
+    check("D2: 代码块 pre>code + 保守着色（3 个 span）", tags(r2).includes("pre") && tags(r2).includes("code") && tags(r2).filter((t) => t === "span").length === 3);
+
+    const tree3 = parseMarkdown("| a | b |\n| - | - |\n| 1 | 2 |");
+    const r3 = mdastToReact(tree3, hStub, { matcher: null }, "k");
+    check("D2: GFM 表格 th/td 结构", tags(r3).includes("table") && tags(r3).includes("th") && tags(r3).includes("td"));
+
+    const tree4 = parseMarkdown("<script>alert(1)</script>\nplain");
+    const r4 = mdastToReact(tree4, hStub, { matcher: null }, "k");
+    check("D2: 原始 HTML 跳过（不渲染 script）", tags(r4).includes("script") === false);
+    check("D2: html 后段落保留", textOf(r4).includes("plain"));
+  }
 }
 
 console.log(`\n结果: ${passed} 通过, ${failed} 失败`);
