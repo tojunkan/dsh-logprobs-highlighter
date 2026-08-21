@@ -15,16 +15,15 @@ import { LogprobsTurnTail } from "./panel.js";
 export const inject = ["conversationEvents", "slots", "sessions"];
 
 export function apply(ctx) {
-  // 注册 turnTail chain 槽（M3 面板）；try/catch 兜底：槽 API 细节联调时修正。
+  // 注册 turnTail chain 槽（M3 面板）；select 为 chain 专属纯函数，只收 owner
+  // props {turn, seq, openFile}（t14 §5：ChainSelect = (owner) => M | null；
+  // ui-conversation client.js:9283-9287 实证），返回 {turn, seq} 成为组件 matched。
   try {
     ctx.slots.inject("conversation.chat.turnTail", () =>
-      ctx.slots.register({ name: "conversation.chat.turnTail",
-        select: (session, turn) => {
-	  return {
-	    turn: turn,
-	    sessionId: session?.id
-	  };
-	}
+      ctx.slots.register({
+        name: "conversation.chat.turnTail",
+        select: ({ turn, seq }) => (turn ? { turn, seq } : null),
+        priority: 0,
       }, LogprobsTurnTail)
     );
   } catch (err) {
