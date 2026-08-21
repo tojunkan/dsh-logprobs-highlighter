@@ -1,0 +1,4306 @@
+{
+  "meta": {
+    "script": "scripts/m0-probe.mjs",
+    "ts": "2026-08-20T12:29:55.892Z",
+    "node": "v24.19.0",
+    "baseUrl": "https://api.deepseek.com",
+    "model": "deepseek-v4-flash",
+    "topLogprobs": 2,
+    "maxTokens": 800,
+    "prompt": "请回答：OpenAI GPT-4 于 2023 年 3 月发布，DeepSeek-V3 于 2024 年 12 月发布。请问 2024 年中国新能源汽车销量约为多少万辆？请给出具体数字。",
+    "thinking": "disabled",
+    "replayedAt": "2026-08-20T12:40:38.256Z"
+  },
+  "request": {
+    "model": "deepseek-v4-flash",
+    "max_tokens": 800,
+    "stream": true,
+    "stream_options": {
+      "include_usage": true
+    },
+    "logprobs": true,
+    "top_logprobs": 2,
+    "thinking": {
+      "type": "disabled"
+    }
+  },
+  "stream": {
+    "chunkTotal": 63,
+    "doneArrived": true,
+    "usageChunks": 1,
+    "usage": {
+      "prompt_tokens": 60,
+      "completion_tokens": 61,
+      "total_tokens": 121,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 60
+    },
+    "firstChunk": {
+      "role": "assistant",
+      "roleClass": "text",
+      "delta": {
+        "content": "",
+        "reasoning_content": null,
+        "hasToolCalls": false
+      },
+      "logprobs": {
+        "present": true,
+        "isNull": true,
+        "content": {
+          "present": true,
+          "isNull": true,
+          "count": 0
+        },
+        "reasoning_content": {
+          "present": true,
+          "isNull": true,
+          "count": 0
+        }
+      },
+      "finish_reason": null
+    },
+    "parseErrors": 0
+  },
+  "tokenPerChunk": {
+    "content": {
+      "1": 61
+    },
+    "reasoning": {}
+  },
+  "segments": {
+    "content": {
+      "chunks": 63,
+      "deltaChars": 108,
+      "lpFieldChunks": 63,
+      "lpNullChunks": 2,
+      "lpMissingChunks": 0,
+      "lpEmptyArrays": 0,
+      "lpChunks": 61,
+      "lpTokens": 61,
+      "otherFieldPresent": 2,
+      "alignExact": 61,
+      "alignDiff": 0,
+      "singleExact": 61,
+      "singleDiff": 0,
+      "multiChunks": 0,
+      "bytesChecked": 61,
+      "bytesMismatch": 0
+    },
+    "reasoning": {
+      "chunks": 0,
+      "deltaChars": 0,
+      "lpFieldChunks": 0,
+      "lpNullChunks": 0,
+      "lpMissingChunks": 0,
+      "lpEmptyArrays": 0,
+      "lpChunks": 0,
+      "lpTokens": 0,
+      "otherFieldPresent": 0,
+      "alignExact": 0,
+      "alignDiff": 0,
+      "singleExact": 0,
+      "singleDiff": 0,
+      "multiChunks": 0,
+      "bytesChecked": 0,
+      "bytesMismatch": 0
+    },
+    "tool-call": {
+      "chunks": 0,
+      "deltaChars": 0,
+      "lpFieldChunks": 0,
+      "lpNullChunks": 0,
+      "lpMissingChunks": 0,
+      "lpEmptyArrays": 0,
+      "lpChunks": 0,
+      "lpTokens": 0,
+      "otherFieldPresent": 0,
+      "alignExact": 0,
+      "alignDiff": 0,
+      "singleExact": 0,
+      "singleDiff": 0,
+      "multiChunks": 0,
+      "bytesChecked": 0,
+      "bytesMismatch": 0
+    },
+    "other": {
+      "chunks": 0,
+      "deltaChars": 0,
+      "lpFieldChunks": 0,
+      "lpNullChunks": 0,
+      "lpMissingChunks": 0,
+      "lpEmptyArrays": 0,
+      "lpChunks": 0,
+      "lpTokens": 0,
+      "otherFieldPresent": 0,
+      "alignExact": 0,
+      "alignDiff": 0,
+      "singleExact": 0,
+      "singleDiff": 0,
+      "multiChunks": 0,
+      "bytesChecked": 0,
+      "bytesMismatch": 0
+    }
+  },
+  "conclusions": {
+    "content": "有（logprobs 条目存在）",
+    "reasoning": "未出现该段（本次流无此角色 chunk）"
+  },
+  "reasoningShare": {
+    "deltaChars": {
+      "reasoning": 0,
+      "total": 108,
+      "ratio": 0
+    },
+    "usage": {
+      "completion_tokens": 61,
+      "reasoning_tokens": null,
+      "ratio": null
+    }
+  },
+  "amplification": {
+    "stream": {
+      "rawBytes": 32207,
+      "leanBytes": 17091,
+      "factor": 1.884
+    },
+    "chunkMean": 1.892,
+    "chunkMin": 1.038,
+    "chunkMax": 2.378,
+    "chunkCount": 63,
+    "buckets": {
+      "<1.5": 2,
+      "1.5-2": 51,
+      "2-3": 10,
+      "3-5": 0,
+      ">=5": 0
+    }
+  },
+  "bytesCheck": {
+    "content": {
+      "checked": 61,
+      "mismatch": 0
+    },
+    "reasoning": {
+      "checked": 0,
+      "mismatch": 0
+    },
+    "total": {
+      "checked": 61,
+      "mismatch": 0
+    }
+  },
+  "chunks": [
+    {
+      "seq": 0,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"role\":\"assistant\",\"content\":\"\"},\"logprobs\":null,\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 299,
+      "role": "text",
+      "deltaChars": 0,
+      "logprobs": {
+        "present": true,
+        "isNull": true,
+        "content": {
+          "present": true,
+          "isNull": true,
+          "count": 0
+        },
+        "reasoning_content": {
+          "present": true,
+          "isNull": true,
+          "count": 0
+        }
+      },
+      "tokensContent": [],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 299,
+        "lean": 283,
+        "reserialized": 299,
+        "factor": 1.057
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 1,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"基于\"},\"logprobs\":{\"content\":[{\"token\":\"基于\",\"logprob\":-0.35870358,\"bytes\":[229,159,186,228,186,142],\"top_logprobs\":[{\"token\":\"基于\",\"logprob\":-0.35870358,\"bytes\":[229,159,186,228,186,142]},{\"token\":\"根据\",\"logprob\":-1.4079475,\"bytes\":[230,160,185,230,141,174]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 536,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "基于",
+          "logprob": -0.35870358,
+          "bytes": [
+            229,
+            159,
+            186,
+            228,
+            186,
+            142
+          ],
+          "top_logprobs": [
+            {
+              "token": "基于",
+              "logprob": -0.35870358,
+              "bytes": [
+                229,
+                159,
+                186,
+                228,
+                186,
+                142
+              ]
+            },
+            {
+              "token": "根据",
+              "logprob": -1.4079475,
+              "bytes": [
+                230,
+                160,
+                185,
+                230,
+                141,
+                174
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 536,
+        "lean": 270,
+        "reserialized": 536,
+        "factor": 1.985
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 2,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"公开\"},\"logprobs\":{\"content\":[{\"token\":\"公开\",\"logprob\":-0.009832285,\"bytes\":[229,133,172,229,188,128],\"top_logprobs\":[{\"token\":\"公开\",\"logprob\":-0.009832285,\"bytes\":[229,133,172,229,188,128]},{\"token\":\"你\",\"logprob\":-5.990427,\"bytes\":[228,189,160]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 522,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "公开",
+          "logprob": -0.009832285,
+          "bytes": [
+            229,
+            133,
+            172,
+            229,
+            188,
+            128
+          ],
+          "top_logprobs": [
+            {
+              "token": "公开",
+              "logprob": -0.009832285,
+              "bytes": [
+                229,
+                133,
+                172,
+                229,
+                188,
+                128
+              ]
+            },
+            {
+              "token": "你",
+              "logprob": -5.990427,
+              "bytes": [
+                228,
+                189,
+                160
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 522,
+        "lean": 270,
+        "reserialized": 522,
+        "factor": 1.933
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 3,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"数据\"},\"logprobs\":{\"content\":[{\"token\":\"数据\",\"logprob\":-0.07549307,\"bytes\":[230,149,176,230,141,174],\"top_logprobs\":[{\"token\":\"数据\",\"logprob\":-0.07549307,\"bytes\":[230,149,176,230,141,174]},{\"token\":\"数据和\",\"logprob\":-2.622967,\"bytes\":[230,149,176,230,141,174,229,146,140]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 550,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "数据",
+          "logprob": -0.07549307,
+          "bytes": [
+            230,
+            149,
+            176,
+            230,
+            141,
+            174
+          ],
+          "top_logprobs": [
+            {
+              "token": "数据",
+              "logprob": -0.07549307,
+              "bytes": [
+                230,
+                149,
+                176,
+                230,
+                141,
+                174
+              ]
+            },
+            {
+              "token": "数据和",
+              "logprob": -2.622967,
+              "bytes": [
+                230,
+                149,
+                176,
+                230,
+                141,
+                174,
+                229,
+                146,
+                140
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 550,
+        "lean": 270,
+        "reserialized": 550,
+        "factor": 2.037
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 4,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"，\"},\"logprobs\":{\"content\":[{\"token\":\"，\",\"logprob\":-0.0000034570635,\"bytes\":[239,188,140],\"top_logprobs\":[{\"token\":\"，\",\"logprob\":-0.0000034570635,\"bytes\":[239,188,140]},{\"token\":\"（\",\"logprob\":-13.047058,\"bytes\":[239,188,136]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 498,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "，",
+          "logprob": -0.0000034570635,
+          "bytes": [
+            239,
+            188,
+            140
+          ],
+          "top_logprobs": [
+            {
+              "token": "，",
+              "logprob": -0.0000034570635,
+              "bytes": [
+                239,
+                188,
+                140
+              ]
+            },
+            {
+              "token": "（",
+              "logprob": -13.047058,
+              "bytes": [
+                239,
+                188,
+                136
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 498,
+        "lean": 267,
+        "reserialized": 498,
+        "factor": 1.865
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 5,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"202\"},\"logprobs\":{\"content\":[{\"token\":\"202\",\"logprob\":-0.000020861407,\"bytes\":[50,48,50],\"top_logprobs\":[{\"token\":\"202\",\"logprob\":-0.000020861407,\"bytes\":[50,48,50]},{\"token\":\"**\",\"logprob\":-10.935392,\"bytes\":[42,42]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 483,
+      "role": "text",
+      "deltaChars": 3,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "202",
+          "logprob": -0.000020861407,
+          "bytes": [
+            50,
+            48,
+            50
+          ],
+          "top_logprobs": [
+            {
+              "token": "202",
+              "logprob": -0.000020861407,
+              "bytes": [
+                50,
+                48,
+                50
+              ]
+            },
+            {
+              "token": "**",
+              "logprob": -10.935392,
+              "bytes": [
+                42,
+                42
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 483,
+        "lean": 267,
+        "reserialized": 483,
+        "factor": 1.809
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 6,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"4\"},\"logprobs\":{\"content\":[{\"token\":\"4\",\"logprob\":0.0,\"bytes\":[52],\"top_logprobs\":[{\"token\":\"4\",\"logprob\":0.0,\"bytes\":[52]},{\"token\":\"3\",\"logprob\":-17.8699,\"bytes\":[51]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 435,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "4",
+          "logprob": 0,
+          "bytes": [
+            52
+          ],
+          "top_logprobs": [
+            {
+              "token": "4",
+              "logprob": 0,
+              "bytes": [
+                52
+              ]
+            },
+            {
+              "token": "3",
+              "logprob": -17.8699,
+              "bytes": [
+                51
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 435,
+        "lean": 265,
+        "reserialized": 431,
+        "factor": 1.642
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 7,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"年中国\"},\"logprobs\":{\"content\":[{\"token\":\"年中国\",\"logprob\":-0.0005604842,\"bytes\":[229,185,180,228,184,173,229,155,189],\"top_logprobs\":[{\"token\":\"年中国\",\"logprob\":-0.0005604842,\"bytes\":[229,185,180,228,184,173,229,155,189]},{\"token\":\"年\",\"logprob\":-7.986667,\"bytes\":[229,185,180]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 557,
+      "role": "text",
+      "deltaChars": 3,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "年中国",
+          "logprob": -0.0005604842,
+          "bytes": [
+            229,
+            185,
+            180,
+            228,
+            184,
+            173,
+            229,
+            155,
+            189
+          ],
+          "top_logprobs": [
+            {
+              "token": "年中国",
+              "logprob": -0.0005604842,
+              "bytes": [
+                229,
+                185,
+                180,
+                228,
+                184,
+                173,
+                229,
+                155,
+                189
+              ]
+            },
+            {
+              "token": "年",
+              "logprob": -7.986667,
+              "bytes": [
+                229,
+                185,
+                180
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 557,
+        "lean": 273,
+        "reserialized": 557,
+        "factor": 2.04
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 8,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"新能源汽车\"},\"logprobs\":{\"content\":[{\"token\":\"新能源汽车\",\"logprob\":-0.00014208737,\"bytes\":[230,150,176,232,131,189,230,186,144,230,177,189,232,189,166],\"top_logprobs\":[{\"token\":\"新能源汽车\",\"logprob\":-0.00014208737,\"bytes\":[230,150,176,232,131,189,230,186,144,230,177,189,232,189,166]},{\"token\":\"新能源\",\"logprob\":-8.8596735,\"bytes\":[230,150,176,232,131,189,230,186,144]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 656,
+      "role": "text",
+      "deltaChars": 5,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "新能源汽车",
+          "logprob": -0.00014208737,
+          "bytes": [
+            230,
+            150,
+            176,
+            232,
+            131,
+            189,
+            230,
+            186,
+            144,
+            230,
+            177,
+            189,
+            232,
+            189,
+            166
+          ],
+          "top_logprobs": [
+            {
+              "token": "新能源汽车",
+              "logprob": -0.00014208737,
+              "bytes": [
+                230,
+                150,
+                176,
+                232,
+                131,
+                189,
+                230,
+                186,
+                144,
+                230,
+                177,
+                189,
+                232,
+                189,
+                166
+              ]
+            },
+            {
+              "token": "新能源",
+              "logprob": -8.8596735,
+              "bytes": [
+                230,
+                150,
+                176,
+                232,
+                131,
+                189,
+                230,
+                186,
+                144
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 656,
+        "lean": 279,
+        "reserialized": 656,
+        "factor": 2.351
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 9,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"销量\"},\"logprobs\":{\"content\":[{\"token\":\"销量\",\"logprob\":-0.0486843,\"bytes\":[233,148,128,233,135,143],\"top_logprobs\":[{\"token\":\"销量\",\"logprob\":-0.0486843,\"bytes\":[233,148,128,233,135,143]},{\"token\":\"（\",\"logprob\":-3.0482495,\"bytes\":[239,188,136]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 519,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "销量",
+          "logprob": -0.0486843,
+          "bytes": [
+            233,
+            148,
+            128,
+            233,
+            135,
+            143
+          ],
+          "top_logprobs": [
+            {
+              "token": "销量",
+              "logprob": -0.0486843,
+              "bytes": [
+                233,
+                148,
+                128,
+                233,
+                135,
+                143
+              ]
+            },
+            {
+              "token": "（",
+              "logprob": -3.0482495,
+              "bytes": [
+                239,
+                188,
+                136
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 519,
+        "lean": 270,
+        "reserialized": 519,
+        "factor": 1.922
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 10,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"约为\"},\"logprobs\":{\"content\":[{\"token\":\"约为\",\"logprob\":-0.016363708,\"bytes\":[231,186,166,228,184,186],\"top_logprobs\":[{\"token\":\"约为\",\"logprob\":-0.016363708,\"bytes\":[231,186,166,228,184,186]},{\"token\":\"（\",\"logprob\":-4.6862626,\"bytes\":[239,188,136]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 523,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "约为",
+          "logprob": -0.016363708,
+          "bytes": [
+            231,
+            186,
+            166,
+            228,
+            184,
+            186
+          ],
+          "top_logprobs": [
+            {
+              "token": "约为",
+              "logprob": -0.016363708,
+              "bytes": [
+                231,
+                186,
+                166,
+                228,
+                184,
+                186
+              ]
+            },
+            {
+              "token": "（",
+              "logprob": -4.6862626,
+              "bytes": [
+                239,
+                188,
+                136
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 523,
+        "lean": 270,
+        "reserialized": 523,
+        "factor": 1.937
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 11,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" **\"},\"logprobs\":{\"content\":[{\"token\":\" **\",\"logprob\":-0.0018737632,\"bytes\":[32,42,42],\"top_logprobs\":[{\"token\":\" **\",\"logprob\":-0.0018737632,\"bytes\":[32,42,42]},{\"token\":\"**\",\"logprob\":-6.280774,\"bytes\":[42,42]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 478,
+      "role": "text",
+      "deltaChars": 3,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": " **",
+          "logprob": -0.0018737632,
+          "bytes": [
+            32,
+            42,
+            42
+          ],
+          "top_logprobs": [
+            {
+              "token": " **",
+              "logprob": -0.0018737632,
+              "bytes": [
+                32,
+                42,
+                42
+              ]
+            },
+            {
+              "token": "**",
+              "logprob": -6.280774,
+              "bytes": [
+                42,
+                42
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 478,
+        "lean": 267,
+        "reserialized": 478,
+        "factor": 1.79
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 12,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"128\"},\"logprobs\":{\"content\":[{\"token\":\"128\",\"logprob\":-0.010837742,\"bytes\":[49,50,56],\"top_logprobs\":[{\"token\":\"128\",\"logprob\":-0.010837742,\"bytes\":[49,50,56]},{\"token\":\"1\",\"logprob\":-4.5301895,\"bytes\":[49]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 473,
+      "role": "text",
+      "deltaChars": 3,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "128",
+          "logprob": -0.010837742,
+          "bytes": [
+            49,
+            50,
+            56
+          ],
+          "top_logprobs": [
+            {
+              "token": "128",
+              "logprob": -0.010837742,
+              "bytes": [
+                49,
+                50,
+                56
+              ]
+            },
+            {
+              "token": "1",
+              "logprob": -4.5301895,
+              "bytes": [
+                49
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 473,
+        "lean": 267,
+        "reserialized": 473,
+        "factor": 1.772
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 13,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"6\"},\"logprobs\":{\"content\":[{\"token\":\"6\",\"logprob\":-0.000009894322,\"bytes\":[54],\"top_logprobs\":[{\"token\":\"6\",\"logprob\":-0.000009894322,\"bytes\":[54]},{\"token\":\"7\",\"logprob\":-11.618803,\"bytes\":[55]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 461,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "6",
+          "logprob": -0.000009894322,
+          "bytes": [
+            54
+          ],
+          "top_logprobs": [
+            {
+              "token": "6",
+              "logprob": -0.000009894322,
+              "bytes": [
+                54
+              ]
+            },
+            {
+              "token": "7",
+              "logprob": -11.618803,
+              "bytes": [
+                55
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 461,
+        "lean": 265,
+        "reserialized": 461,
+        "factor": 1.74
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 14,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\".\"},\"logprobs\":{\"content\":[{\"token\":\".\",\"logprob\":-0.00018392302,\"bytes\":[46],\"top_logprobs\":[{\"token\":\".\",\"logprob\":-0.00018392302,\"bytes\":[46]},{\"token\":\"万辆\",\"logprob\":-8.624547,\"bytes\":[228,184,135,232,190,134]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 484,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": ".",
+          "logprob": -0.00018392302,
+          "bytes": [
+            46
+          ],
+          "top_logprobs": [
+            {
+              "token": ".",
+              "logprob": -0.00018392302,
+              "bytes": [
+                46
+              ]
+            },
+            {
+              "token": "万辆",
+              "logprob": -8.624547,
+              "bytes": [
+                228,
+                184,
+                135,
+                232,
+                190,
+                134
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 484,
+        "lean": 265,
+        "reserialized": 484,
+        "factor": 1.826
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 15,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"6\"},\"logprobs\":{\"content\":[{\"token\":\"6\",\"logprob\":-2.3841855e-7,\"bytes\":[54],\"top_logprobs\":[{\"token\":\"6\",\"logprob\":-2.3841855e-7,\"bytes\":[54]},{\"token\":\"9\",\"logprob\":-15.325962,\"bytes\":[57]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 457,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "6",
+          "logprob": -2.3841855e-7,
+          "bytes": [
+            54
+          ],
+          "top_logprobs": [
+            {
+              "token": "6",
+              "logprob": -2.3841855e-7,
+              "bytes": [
+                54
+              ]
+            },
+            {
+              "token": "9",
+              "logprob": -15.325962,
+              "bytes": [
+                57
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 457,
+        "lean": 265,
+        "reserialized": 457,
+        "factor": 1.725
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 16,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"万辆\"},\"logprobs\":{\"content\":[{\"token\":\"万辆\",\"logprob\":-0.00008880698,\"bytes\":[228,184,135,232,190,134],\"top_logprobs\":[{\"token\":\"万辆\",\"logprob\":-0.00008880698,\"bytes\":[228,184,135,232,190,134]},{\"token\":\"万\",\"logprob\":-9.48372,\"bytes\":[228,184,135]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 525,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "万辆",
+          "logprob": -0.00008880698,
+          "bytes": [
+            228,
+            184,
+            135,
+            232,
+            190,
+            134
+          ],
+          "top_logprobs": [
+            {
+              "token": "万辆",
+              "logprob": -0.00008880698,
+              "bytes": [
+                228,
+                184,
+                135,
+                232,
+                190,
+                134
+              ]
+            },
+            {
+              "token": "万",
+              "logprob": -9.48372,
+              "bytes": [
+                228,
+                184,
+                135
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 525,
+        "lean": 270,
+        "reserialized": 525,
+        "factor": 1.944
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 17,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"**\"},\"logprobs\":{\"content\":[{\"token\":\"**\",\"logprob\":0.0,\"bytes\":[42,42],\"top_logprobs\":[{\"token\":\"**\",\"logprob\":0.0,\"bytes\":[42,42]},{\"token\":\"（\",\"logprob\":-21.825115,\"bytes\":[239,188,136]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 457,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "**",
+          "logprob": 0,
+          "bytes": [
+            42,
+            42
+          ],
+          "top_logprobs": [
+            {
+              "token": "**",
+              "logprob": 0,
+              "bytes": [
+                42,
+                42
+              ]
+            },
+            {
+              "token": "（",
+              "logprob": -21.825115,
+              "bytes": [
+                239,
+                188,
+                136
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 457,
+        "lean": 266,
+        "reserialized": 453,
+        "factor": 1.718
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 18,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"（\"},\"logprobs\":{\"content\":[{\"token\":\"（\",\"logprob\":-0.000003933899,\"bytes\":[239,188,136],\"top_logprobs\":[{\"token\":\"（\",\"logprob\":-0.000003933899,\"bytes\":[239,188,136]},{\"token\":\"。\",\"logprob\":-12.634125,\"bytes\":[227,128,130]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 496,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "（",
+          "logprob": -0.000003933899,
+          "bytes": [
+            239,
+            188,
+            136
+          ],
+          "top_logprobs": [
+            {
+              "token": "（",
+              "logprob": -0.000003933899,
+              "bytes": [
+                239,
+                188,
+                136
+              ]
+            },
+            {
+              "token": "。",
+              "logprob": -12.634125,
+              "bytes": [
+                227,
+                128,
+                130
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 496,
+        "lean": 267,
+        "reserialized": 496,
+        "factor": 1.858
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 19,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"同比增长\"},\"logprobs\":{\"content\":[{\"token\":\"同比增长\",\"logprob\":-1.4726866,\"bytes\":[229,144,140,230,175,148,229,162,158,233,149,191],\"top_logprobs\":[{\"token\":\"具体\",\"logprob\":-1.1651496,\"bytes\":[229,133,183,228,189,147]},{\"token\":\"同比增长\",\"logprob\":-1.4726866,\"bytes\":[229,144,140,230,175,148,229,162,158,233,149,191]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 600,
+      "role": "text",
+      "deltaChars": 4,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "同比增长",
+          "logprob": -1.4726866,
+          "bytes": [
+            229,
+            144,
+            140,
+            230,
+            175,
+            148,
+            229,
+            162,
+            158,
+            233,
+            149,
+            191
+          ],
+          "top_logprobs": [
+            {
+              "token": "具体",
+              "logprob": -1.1651496,
+              "bytes": [
+                229,
+                133,
+                183,
+                228,
+                189,
+                147
+              ]
+            },
+            {
+              "token": "同比增长",
+              "logprob": -1.4726866,
+              "bytes": [
+                229,
+                144,
+                140,
+                230,
+                175,
+                148,
+                229,
+                162,
+                158,
+                233,
+                149,
+                191
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 600,
+        "lean": 276,
+        "reserialized": 600,
+        "factor": 2.174
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 20,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"约\"},\"logprobs\":{\"content\":[{\"token\":\"约\",\"logprob\":-0.023777341,\"bytes\":[231,186,166],\"top_logprobs\":[{\"token\":\"约\",\"logprob\":-0.023777341,\"bytes\":[231,186,166]},{\"token\":\"35\",\"logprob\":-3.7510378,\"bytes\":[51,53]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 483,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "约",
+          "logprob": -0.023777341,
+          "bytes": [
+            231,
+            186,
+            166
+          ],
+          "top_logprobs": [
+            {
+              "token": "约",
+              "logprob": -0.023777341,
+              "bytes": [
+                231,
+                186,
+                166
+              ]
+            },
+            {
+              "token": "35",
+              "logprob": -3.7510378,
+              "bytes": [
+                51,
+                53
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 483,
+        "lean": 267,
+        "reserialized": 483,
+        "factor": 1.809
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 21,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"35\"},\"logprobs\":{\"content\":[{\"token\":\"35\",\"logprob\":-0.00004458328,\"bytes\":[51,53],\"top_logprobs\":[{\"token\":\"35\",\"logprob\":-0.00004458328,\"bytes\":[51,53]},{\"token\":\"34\",\"logprob\":-10.968442,\"bytes\":[51,52]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 472,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "35",
+          "logprob": -0.00004458328,
+          "bytes": [
+            51,
+            53
+          ],
+          "top_logprobs": [
+            {
+              "token": "35",
+              "logprob": -0.00004458328,
+              "bytes": [
+                51,
+                53
+              ]
+            },
+            {
+              "token": "34",
+              "logprob": -10.968442,
+              "bytes": [
+                51,
+                52
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 472,
+        "lean": 266,
+        "reserialized": 472,
+        "factor": 1.774
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 22,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\".\"},\"logprobs\":{\"content\":[{\"token\":\".\",\"logprob\":-0.000011086402,\"bytes\":[46],\"top_logprobs\":[{\"token\":\".\",\"logprob\":-0.000011086402,\"bytes\":[46]},{\"token\":\"%\",\"logprob\":-11.414309,\"bytes\":[37]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 461,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": ".",
+          "logprob": -0.000011086402,
+          "bytes": [
+            46
+          ],
+          "top_logprobs": [
+            {
+              "token": ".",
+              "logprob": -0.000011086402,
+              "bytes": [
+                46
+              ]
+            },
+            {
+              "token": "%",
+              "logprob": -11.414309,
+              "bytes": [
+                37
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 461,
+        "lean": 265,
+        "reserialized": 461,
+        "factor": 1.74
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 23,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"5\"},\"logprobs\":{\"content\":[{\"token\":\"5\",\"logprob\":-2.3841855e-7,\"bytes\":[53],\"top_logprobs\":[{\"token\":\"5\",\"logprob\":-2.3841855e-7,\"bytes\":[53]},{\"token\":\"4\",\"logprob\":-16.430676,\"bytes\":[52]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 457,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "5",
+          "logprob": -2.3841855e-7,
+          "bytes": [
+            53
+          ],
+          "top_logprobs": [
+            {
+              "token": "5",
+              "logprob": -2.3841855e-7,
+              "bytes": [
+                53
+              ]
+            },
+            {
+              "token": "4",
+              "logprob": -16.430676,
+              "bytes": [
+                52
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 457,
+        "lean": 265,
+        "reserialized": 457,
+        "factor": 1.725
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 24,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"%\"},\"logprobs\":{\"content\":[{\"token\":\"%\",\"logprob\":-0.0002400587,\"bytes\":[37],\"top_logprobs\":[{\"token\":\"%\",\"logprob\":-0.0002400587,\"bytes\":[37]},{\"token\":\"%，\",\"logprob\":-8.348526,\"bytes\":[37,239,188,140]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 471,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "%",
+          "logprob": -0.0002400587,
+          "bytes": [
+            37
+          ],
+          "top_logprobs": [
+            {
+              "token": "%",
+              "logprob": -0.0002400587,
+              "bytes": [
+                37
+              ]
+            },
+            {
+              "token": "%，",
+              "logprob": -8.348526,
+              "bytes": [
+                37,
+                239,
+                188,
+                140
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 471,
+        "lean": 265,
+        "reserialized": 471,
+        "factor": 1.777
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 25,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"）。\"},\"logprobs\":{\"content\":[{\"token\":\"）。\",\"logprob\":-0.004080898,\"bytes\":[239,188,137,227,128,130],\"top_logprobs\":[{\"token\":\"）。\",\"logprob\":-0.004080898,\"bytes\":[239,188,137,227,128,130]},{\"token\":\"）。\\n\\n\",\"logprob\":-5.5166426,\"bytes\":[239,188,137,227,128,130,10,10]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 548,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "）。",
+          "logprob": -0.004080898,
+          "bytes": [
+            239,
+            188,
+            137,
+            227,
+            128,
+            130
+          ],
+          "top_logprobs": [
+            {
+              "token": "）。",
+              "logprob": -0.004080898,
+              "bytes": [
+                239,
+                188,
+                137,
+                227,
+                128,
+                130
+              ]
+            },
+            {
+              "token": "）。\n\n",
+              "logprob": -5.5166426,
+              "bytes": [
+                239,
+                188,
+                137,
+                227,
+                128,
+                130,
+                10,
+                10
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 548,
+        "lean": 270,
+        "reserialized": 548,
+        "factor": 2.03
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 26,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"这一\"},\"logprobs\":{\"content\":[{\"token\":\"这一\",\"logprob\":-1.3971477,\"bytes\":[232,191,153,228,184,128],\"top_logprobs\":[{\"token\":\"  \\n\\n\",\"logprob\":-0.530292,\"bytes\":[32,32,10,10]},{\"token\":\"这一\",\"logprob\":-1.3971477,\"bytes\":[232,191,153,228,184,128]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 521,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "这一",
+          "logprob": -1.3971477,
+          "bytes": [
+            232,
+            191,
+            153,
+            228,
+            184,
+            128
+          ],
+          "top_logprobs": [
+            {
+              "token": "  \n\n",
+              "logprob": -0.530292,
+              "bytes": [
+                32,
+                32,
+                10,
+                10
+              ]
+            },
+            {
+              "token": "这一",
+              "logprob": -1.3971477,
+              "bytes": [
+                232,
+                191,
+                153,
+                228,
+                184,
+                128
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 521,
+        "lean": 270,
+        "reserialized": 521,
+        "factor": 1.93
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 27,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"数据\"},\"logprobs\":{\"content\":[{\"token\":\"数据\",\"logprob\":-0.8785363,\"bytes\":[230,149,176,230,141,174],\"top_logprobs\":[{\"token\":\"数字\",\"logprob\":-0.53683096,\"bytes\":[230,149,176,229,173,151]},{\"token\":\"数据\",\"logprob\":-0.8785363,\"bytes\":[230,149,176,230,141,174]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 535,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "数据",
+          "logprob": -0.8785363,
+          "bytes": [
+            230,
+            149,
+            176,
+            230,
+            141,
+            174
+          ],
+          "top_logprobs": [
+            {
+              "token": "数字",
+              "logprob": -0.53683096,
+              "bytes": [
+                230,
+                149,
+                176,
+                229,
+                173,
+                151
+              ]
+            },
+            {
+              "token": "数据",
+              "logprob": -0.8785363,
+              "bytes": [
+                230,
+                149,
+                176,
+                230,
+                141,
+                174
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 535,
+        "lean": 270,
+        "reserialized": 535,
+        "factor": 1.981
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 28,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"来自\"},\"logprobs\":{\"content\":[{\"token\":\"来自\",\"logprob\":-0.009058805,\"bytes\":[230,157,165,232,135,170],\"top_logprobs\":[{\"token\":\"来自\",\"logprob\":-0.009058805,\"bytes\":[230,157,165,232,135,170]},{\"token\":\"来源于\",\"logprob\":-5.5449667,\"bytes\":[230,157,165,230,186,144,228,186,142]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 553,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "来自",
+          "logprob": -0.009058805,
+          "bytes": [
+            230,
+            157,
+            165,
+            232,
+            135,
+            170
+          ],
+          "top_logprobs": [
+            {
+              "token": "来自",
+              "logprob": -0.009058805,
+              "bytes": [
+                230,
+                157,
+                165,
+                232,
+                135,
+                170
+              ]
+            },
+            {
+              "token": "来源于",
+              "logprob": -5.5449667,
+              "bytes": [
+                230,
+                157,
+                165,
+                230,
+                186,
+                144,
+                228,
+                186,
+                142
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 553,
+        "lean": 270,
+        "reserialized": 553,
+        "factor": 2.048
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 29,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"中国\"},\"logprobs\":{\"content\":[{\"token\":\"中国\",\"logprob\":-3.576278e-7,\"bytes\":[228,184,173,229,155,189],\"top_logprobs\":[{\"token\":\"中国\",\"logprob\":-3.576278e-7,\"bytes\":[228,184,173,229,155,189]},{\"token\":\"中\",\"logprob\":-15.334099,\"bytes\":[228,184,173]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 523,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "中国",
+          "logprob": -3.576278e-7,
+          "bytes": [
+            228,
+            184,
+            173,
+            229,
+            155,
+            189
+          ],
+          "top_logprobs": [
+            {
+              "token": "中国",
+              "logprob": -3.576278e-7,
+              "bytes": [
+                228,
+                184,
+                173,
+                229,
+                155,
+                189
+              ]
+            },
+            {
+              "token": "中",
+              "logprob": -15.334099,
+              "bytes": [
+                228,
+                184,
+                173
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 523,
+        "lean": 270,
+        "reserialized": 523,
+        "factor": 1.937
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 30,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"汽车\"},\"logprobs\":{\"content\":[{\"token\":\"汽车\",\"logprob\":-0.06349834,\"bytes\":[230,177,189,232,189,166],\"top_logprobs\":[{\"token\":\"汽车\",\"logprob\":-0.06349834,\"bytes\":[230,177,189,232,189,166]},{\"token\":\"乘\",\"logprob\":-2.788657,\"bytes\":[228,185,152]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 520,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "汽车",
+          "logprob": -0.06349834,
+          "bytes": [
+            230,
+            177,
+            189,
+            232,
+            189,
+            166
+          ],
+          "top_logprobs": [
+            {
+              "token": "汽车",
+              "logprob": -0.06349834,
+              "bytes": [
+                230,
+                177,
+                189,
+                232,
+                189,
+                166
+              ]
+            },
+            {
+              "token": "乘",
+              "logprob": -2.788657,
+              "bytes": [
+                228,
+                185,
+                152
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 520,
+        "lean": 270,
+        "reserialized": 520,
+        "factor": 1.926
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 31,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"工业\"},\"logprobs\":{\"content\":[{\"token\":\"工业\",\"logprob\":-3.576278e-7,\"bytes\":[229,183,165,228,184,154],\"top_logprobs\":[{\"token\":\"工业\",\"logprob\":-3.576278e-7,\"bytes\":[229,183,165,228,184,154]},{\"token\":\"工業\",\"logprob\":-15.291183,\"bytes\":[229,183,165,230,165,173]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 538,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "工业",
+          "logprob": -3.576278e-7,
+          "bytes": [
+            229,
+            183,
+            165,
+            228,
+            184,
+            154
+          ],
+          "top_logprobs": [
+            {
+              "token": "工业",
+              "logprob": -3.576278e-7,
+              "bytes": [
+                229,
+                183,
+                165,
+                228,
+                184,
+                154
+              ]
+            },
+            {
+              "token": "工業",
+              "logprob": -15.291183,
+              "bytes": [
+                229,
+                183,
+                165,
+                230,
+                165,
+                173
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 538,
+        "lean": 270,
+        "reserialized": 538,
+        "factor": 1.993
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 32,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"协会\"},\"logprobs\":{\"content\":[{\"token\":\"协会\",\"logprob\":-4.7683704e-7,\"bytes\":[229,141,143,228,188,154],\"top_logprobs\":[{\"token\":\"协会\",\"logprob\":-4.7683704e-7,\"bytes\":[229,141,143,228,188,154]},{\"token\":\"協會\",\"logprob\":-15.485996,\"bytes\":[229,141,148,230,156,131]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 540,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "协会",
+          "logprob": -4.7683704e-7,
+          "bytes": [
+            229,
+            141,
+            143,
+            228,
+            188,
+            154
+          ],
+          "top_logprobs": [
+            {
+              "token": "协会",
+              "logprob": -4.7683704e-7,
+              "bytes": [
+                229,
+                141,
+                143,
+                228,
+                188,
+                154
+              ]
+            },
+            {
+              "token": "協會",
+              "logprob": -15.485996,
+              "bytes": [
+                229,
+                141,
+                148,
+                230,
+                156,
+                131
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 540,
+        "lean": 270,
+        "reserialized": 540,
+        "factor": 2
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 33,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"（\"},\"logprobs\":{\"content\":[{\"token\":\"（\",\"logprob\":-0.58100504,\"bytes\":[239,188,136],\"top_logprobs\":[{\"token\":\"（\",\"logprob\":-0.58100504,\"bytes\":[239,188,136]},{\"token\":\"的\",\"logprob\":-0.82646173,\"bytes\":[231,154,132]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 489,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "（",
+          "logprob": -0.58100504,
+          "bytes": [
+            239,
+            188,
+            136
+          ],
+          "top_logprobs": [
+            {
+              "token": "（",
+              "logprob": -0.58100504,
+              "bytes": [
+                239,
+                188,
+                136
+              ]
+            },
+            {
+              "token": "的",
+              "logprob": -0.82646173,
+              "bytes": [
+                231,
+                154,
+                132
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 489,
+        "lean": 267,
+        "reserialized": 489,
+        "factor": 1.831
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 34,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"中\"},\"logprobs\":{\"content\":[{\"token\":\"中\",\"logprob\":-0.00021109737,\"bytes\":[228,184,173],\"top_logprobs\":[{\"token\":\"中\",\"logprob\":-0.00021109737,\"bytes\":[228,184,173]},{\"token\":\"CA\",\"logprob\":-8.789201,\"bytes\":[67,65]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 486,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "中",
+          "logprob": -0.00021109737,
+          "bytes": [
+            228,
+            184,
+            173
+          ],
+          "top_logprobs": [
+            {
+              "token": "中",
+              "logprob": -0.00021109737,
+              "bytes": [
+                228,
+                184,
+                173
+              ]
+            },
+            {
+              "token": "CA",
+              "logprob": -8.789201,
+              "bytes": [
+                67,
+                65
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 486,
+        "lean": 267,
+        "reserialized": 486,
+        "factor": 1.82
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 35,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"汽\"},\"logprobs\":{\"content\":[{\"token\":\"汽\",\"logprob\":0.0,\"bytes\":[230,177,189],\"top_logprobs\":[{\"token\":\"汽\",\"logprob\":0.0,\"bytes\":[230,177,189]},{\"token\":\"消\",\"logprob\":-19.50743,\"bytes\":[230,182,136]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 471,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "汽",
+          "logprob": 0,
+          "bytes": [
+            230,
+            177,
+            189
+          ],
+          "top_logprobs": [
+            {
+              "token": "汽",
+              "logprob": 0,
+              "bytes": [
+                230,
+                177,
+                189
+              ]
+            },
+            {
+              "token": "消",
+              "logprob": -19.50743,
+              "bytes": [
+                230,
+                182,
+                136
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 471,
+        "lean": 267,
+        "reserialized": 467,
+        "factor": 1.764
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 36,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"协\"},\"logprobs\":{\"content\":[{\"token\":\"协\",\"logprob\":-9.5367386e-7,\"bytes\":[229,141,143],\"top_logprobs\":[{\"token\":\"协\",\"logprob\":-9.5367386e-7,\"bytes\":[229,141,143]},{\"token\":\"协会\",\"logprob\":-13.880296,\"bytes\":[229,141,143,228,188,154]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 507,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "协",
+          "logprob": -9.5367386e-7,
+          "bytes": [
+            229,
+            141,
+            143
+          ],
+          "top_logprobs": [
+            {
+              "token": "协",
+              "logprob": -9.5367386e-7,
+              "bytes": [
+                229,
+                141,
+                143
+              ]
+            },
+            {
+              "token": "协会",
+              "logprob": -13.880296,
+              "bytes": [
+                229,
+                141,
+                143,
+                228,
+                188,
+                154
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 507,
+        "lean": 267,
+        "reserialized": 507,
+        "factor": 1.899
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 37,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"）\"},\"logprobs\":{\"content\":[{\"token\":\"）\",\"logprob\":-0.00007104621,\"bytes\":[239,188,137],\"top_logprobs\":[{\"token\":\"）\",\"logprob\":-0.00007104621,\"bytes\":[239,188,137]},{\"token\":\"）。\",\"logprob\":-9.74795,\"bytes\":[239,188,137,227,128,130]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 507,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "）",
+          "logprob": -0.00007104621,
+          "bytes": [
+            239,
+            188,
+            137
+          ],
+          "top_logprobs": [
+            {
+              "token": "）",
+              "logprob": -0.00007104621,
+              "bytes": [
+                239,
+                188,
+                137
+              ]
+            },
+            {
+              "token": "）。",
+              "logprob": -9.74795,
+              "bytes": [
+                239,
+                188,
+                137,
+                227,
+                128,
+                130
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 507,
+        "lean": 267,
+        "reserialized": 507,
+        "factor": 1.899
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 38,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"的\"},\"logprobs\":{\"content\":[{\"token\":\"的\",\"logprob\":-0.11707887,\"bytes\":[231,154,132],\"top_logprobs\":[{\"token\":\"的\",\"logprob\":-0.11707887,\"bytes\":[231,154,132]},{\"token\":\"发布的\",\"logprob\":-2.501421,\"bytes\":[229,143,145,229,184,131,231,154,132]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 517,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "的",
+          "logprob": -0.11707887,
+          "bytes": [
+            231,
+            154,
+            132
+          ],
+          "top_logprobs": [
+            {
+              "token": "的",
+              "logprob": -0.11707887,
+              "bytes": [
+                231,
+                154,
+                132
+              ]
+            },
+            {
+              "token": "发布的",
+              "logprob": -2.501421,
+              "bytes": [
+                229,
+                143,
+                145,
+                229,
+                184,
+                131,
+                231,
+                154,
+                132
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 517,
+        "lean": 267,
+        "reserialized": 517,
+        "factor": 1.936
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 39,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"统计\"},\"logprobs\":{\"content\":[{\"token\":\"统计\",\"logprob\":-0.059405643,\"bytes\":[231,187,159,232,174,161],\"top_logprobs\":[{\"token\":\"统计\",\"logprob\":-0.059405643,\"bytes\":[231,187,159,232,174,161]},{\"token\":\"官方\",\"logprob\":-2.8987954,\"bytes\":[229,174,152,230,150,185]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 538,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "统计",
+          "logprob": -0.059405643,
+          "bytes": [
+            231,
+            187,
+            159,
+            232,
+            174,
+            161
+          ],
+          "top_logprobs": [
+            {
+              "token": "统计",
+              "logprob": -0.059405643,
+              "bytes": [
+                231,
+                187,
+                159,
+                232,
+                174,
+                161
+              ]
+            },
+            {
+              "token": "官方",
+              "logprob": -2.8987954,
+              "bytes": [
+                229,
+                174,
+                152,
+                230,
+                150,
+                185
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 538,
+        "lean": 270,
+        "reserialized": 538,
+        "factor": 1.993
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 40,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"。\"},\"logprobs\":{\"content\":[{\"token\":\"。\",\"logprob\":-0.56805885,\"bytes\":[227,128,130],\"top_logprobs\":[{\"token\":\"。\",\"logprob\":-0.56805885,\"bytes\":[227,128,130]},{\"token\":\"口径\",\"logprob\":-1.5795106,\"bytes\":[229,143,163,229,190,132]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 503,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "。",
+          "logprob": -0.56805885,
+          "bytes": [
+            227,
+            128,
+            130
+          ],
+          "top_logprobs": [
+            {
+              "token": "。",
+              "logprob": -0.56805885,
+              "bytes": [
+                227,
+                128,
+                130
+              ]
+            },
+            {
+              "token": "口径",
+              "logprob": -1.5795106,
+              "bytes": [
+                229,
+                143,
+                163,
+                229,
+                190,
+                132
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 503,
+        "lean": 267,
+        "reserialized": 503,
+        "factor": 1.884
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 41,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"  \\n\\n\"},\"logprobs\":{\"content\":[{\"token\":\"  \\n\\n\",\"logprob\":-0.3313521,\"bytes\":[32,32,10,10],\"top_logprobs\":[{\"token\":\"  \\n\\n\",\"logprob\":-0.3313521,\"bytes\":[32,32,10,10]},{\"token\":\"<｜｜end▁of▁sentence｜｜>\",\"logprob\":-1.4355162,\"bytes\":[60,239,189,156,239,189,156,101,110,100,226,150,129,111,102,226,150,129,115,101,110,116,101,110,99,101,239,189,156,239,189,156,62]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 642,
+      "role": "text",
+      "deltaChars": 4,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "  \n\n",
+          "logprob": -0.3313521,
+          "bytes": [
+            32,
+            32,
+            10,
+            10
+          ],
+          "top_logprobs": [
+            {
+              "token": "  \n\n",
+              "logprob": -0.3313521,
+              "bytes": [
+                32,
+                32,
+                10,
+                10
+              ]
+            },
+            {
+              "token": "<｜｜end▁of▁sentence｜｜>",
+              "logprob": -1.4355162,
+              "bytes": [
+                60,
+                239,
+                189,
+                156,
+                239,
+                189,
+                156,
+                101,
+                110,
+                100,
+                226,
+                150,
+                129,
+                111,
+                102,
+                226,
+                150,
+                129,
+                115,
+                101,
+                110,
+                116,
+                101,
+                110,
+                99,
+                101,
+                239,
+                189,
+                156,
+                239,
+                189,
+                156,
+                62
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 642,
+        "lean": 270,
+        "reserialized": 642,
+        "factor": 2.378
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 42,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"（\"},\"logprobs\":{\"content\":[{\"token\":\"（\",\"logprob\":-1.2509217,\"bytes\":[239,188,136],\"top_logprobs\":[{\"token\":\"具体\",\"logprob\":-0.8348374,\"bytes\":[229,133,183,228,189,147]},{\"token\":\"（\",\"logprob\":-1.2509217,\"bytes\":[239,188,136]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 501,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "（",
+          "logprob": -1.2509217,
+          "bytes": [
+            239,
+            188,
+            136
+          ],
+          "top_logprobs": [
+            {
+              "token": "具体",
+              "logprob": -0.8348374,
+              "bytes": [
+                229,
+                133,
+                183,
+                228,
+                189,
+                147
+              ]
+            },
+            {
+              "token": "（",
+              "logprob": -1.2509217,
+              "bytes": [
+                239,
+                188,
+                136
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 501,
+        "lean": 267,
+        "reserialized": 501,
+        "factor": 1.876
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 43,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"注\"},\"logprobs\":{\"content\":[{\"token\":\"注\",\"logprob\":-0.0072943317,\"bytes\":[230,179,168],\"top_logprobs\":[{\"token\":\"注\",\"logprob\":-0.0072943317,\"bytes\":[230,179,168]},{\"token\":\"具体\",\"logprob\":-6.0295835,\"bytes\":[229,133,183,228,189,147]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 507,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "注",
+          "logprob": -0.0072943317,
+          "bytes": [
+            230,
+            179,
+            168
+          ],
+          "top_logprobs": [
+            {
+              "token": "注",
+              "logprob": -0.0072943317,
+              "bytes": [
+                230,
+                179,
+                168
+              ]
+            },
+            {
+              "token": "具体",
+              "logprob": -6.0295835,
+              "bytes": [
+                229,
+                133,
+                183,
+                228,
+                189,
+                147
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 507,
+        "lean": 267,
+        "reserialized": 507,
+        "factor": 1.899
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 44,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"：\"},\"logprobs\":{\"content\":[{\"token\":\"：\",\"logprob\":-1.1920928e-7,\"bytes\":[239,188,154],\"top_logprobs\":[{\"token\":\"：\",\"logprob\":-1.1920928e-7,\"bytes\":[239,188,154]},{\"token\":\"：“\",\"logprob\":-16.007586,\"bytes\":[239,188,154,226,128,156]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 507,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "：",
+          "logprob": -1.1920928e-7,
+          "bytes": [
+            239,
+            188,
+            154
+          ],
+          "top_logprobs": [
+            {
+              "token": "：",
+              "logprob": -1.1920928e-7,
+              "bytes": [
+                239,
+                188,
+                154
+              ]
+            },
+            {
+              "token": "：“",
+              "logprob": -16.007586,
+              "bytes": [
+                239,
+                188,
+                154,
+                226,
+                128,
+                156
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 507,
+        "lean": 267,
+        "reserialized": 507,
+        "factor": 1.899
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 45,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"具体\"},\"logprobs\":{\"content\":[{\"token\":\"具体\",\"logprob\":-0.7473933,\"bytes\":[229,133,183,228,189,147],\"top_logprobs\":[{\"token\":\"具体\",\"logprob\":-0.7473933,\"bytes\":[229,133,183,228,189,147]},{\"token\":\"不同\",\"logprob\":-1.6179416,\"bytes\":[228,184,141,229,144,140]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 534,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "具体",
+          "logprob": -0.7473933,
+          "bytes": [
+            229,
+            133,
+            183,
+            228,
+            189,
+            147
+          ],
+          "top_logprobs": [
+            {
+              "token": "具体",
+              "logprob": -0.7473933,
+              "bytes": [
+                229,
+                133,
+                183,
+                228,
+                189,
+                147
+              ]
+            },
+            {
+              "token": "不同",
+              "logprob": -1.6179416,
+              "bytes": [
+                228,
+                184,
+                141,
+                229,
+                144,
+                140
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 534,
+        "lean": 270,
+        "reserialized": 534,
+        "factor": 1.978
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 46,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"数字\"},\"logprobs\":{\"content\":[{\"token\":\"数字\",\"logprob\":-0.093306564,\"bytes\":[230,149,176,229,173,151],\"top_logprobs\":[{\"token\":\"数字\",\"logprob\":-0.093306564,\"bytes\":[230,149,176,229,173,151]},{\"token\":\"数值\",\"logprob\":-2.4236898,\"bytes\":[230,149,176,229,128,188]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 538,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "数字",
+          "logprob": -0.093306564,
+          "bytes": [
+            230,
+            149,
+            176,
+            229,
+            173,
+            151
+          ],
+          "top_logprobs": [
+            {
+              "token": "数字",
+              "logprob": -0.093306564,
+              "bytes": [
+                230,
+                149,
+                176,
+                229,
+                173,
+                151
+              ]
+            },
+            {
+              "token": "数值",
+              "logprob": -2.4236898,
+              "bytes": [
+                230,
+                149,
+                176,
+                229,
+                128,
+                188
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 538,
+        "lean": 270,
+        "reserialized": 538,
+        "factor": 1.993
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 47,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"可能\"},\"logprobs\":{\"content\":[{\"token\":\"可能\",\"logprob\":-0.0099365115,\"bytes\":[229,143,175,232,131,189],\"top_logprobs\":[{\"token\":\"可能\",\"logprob\":-0.0099365115,\"bytes\":[229,143,175,232,131,189]},{\"token\":\"可能有\",\"logprob\":-5.79338,\"bytes\":[229,143,175,232,131,189,230,156,137]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 553,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "可能",
+          "logprob": -0.0099365115,
+          "bytes": [
+            229,
+            143,
+            175,
+            232,
+            131,
+            189
+          ],
+          "top_logprobs": [
+            {
+              "token": "可能",
+              "logprob": -0.0099365115,
+              "bytes": [
+                229,
+                143,
+                175,
+                232,
+                131,
+                189
+              ]
+            },
+            {
+              "token": "可能有",
+              "logprob": -5.79338,
+              "bytes": [
+                229,
+                143,
+                175,
+                232,
+                131,
+                189,
+                230,
+                156,
+                137
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 553,
+        "lean": 270,
+        "reserialized": 553,
+        "factor": 2.048
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 48,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"因\"},\"logprobs\":{\"content\":[{\"token\":\"因\",\"logprob\":-0.00021944022,\"bytes\":[229,155,160],\"top_logprobs\":[{\"token\":\"因\",\"logprob\":-0.00021944022,\"bytes\":[229,155,160]},{\"token\":\"略有\",\"logprob\":-8.715342,\"bytes\":[231,149,165,230,156,137]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 508,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "因",
+          "logprob": -0.00021944022,
+          "bytes": [
+            229,
+            155,
+            160
+          ],
+          "top_logprobs": [
+            {
+              "token": "因",
+              "logprob": -0.00021944022,
+              "bytes": [
+                229,
+                155,
+                160
+              ]
+            },
+            {
+              "token": "略有",
+              "logprob": -8.715342,
+              "bytes": [
+                231,
+                149,
+                165,
+                230,
+                156,
+                137
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 508,
+        "lean": 267,
+        "reserialized": 508,
+        "factor": 1.903
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 49,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"统计\"},\"logprobs\":{\"content\":[{\"token\":\"统计\",\"logprob\":-0.001198646,\"bytes\":[231,187,159,232,174,161],\"top_logprobs\":[{\"token\":\"统计\",\"logprob\":-0.001198646,\"bytes\":[231,187,159,232,174,161]},{\"token\":\"不同\",\"logprob\":-6.93303,\"bytes\":[228,184,141,229,144,140]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 536,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "统计",
+          "logprob": -0.001198646,
+          "bytes": [
+            231,
+            187,
+            159,
+            232,
+            174,
+            161
+          ],
+          "top_logprobs": [
+            {
+              "token": "统计",
+              "logprob": -0.001198646,
+              "bytes": [
+                231,
+                187,
+                159,
+                232,
+                174,
+                161
+              ]
+            },
+            {
+              "token": "不同",
+              "logprob": -6.93303,
+              "bytes": [
+                228,
+                184,
+                141,
+                229,
+                144,
+                140
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 536,
+        "lean": 270,
+        "reserialized": 536,
+        "factor": 1.985
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 50,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"口径\"},\"logprobs\":{\"content\":[{\"token\":\"口径\",\"logprob\":-0.000004410734,\"bytes\":[229,143,163,229,190,132],\"top_logprobs\":[{\"token\":\"口径\",\"logprob\":-0.000004410734,\"bytes\":[229,143,163,229,190,132]},{\"token\":\"机构\",\"logprob\":-12.818051,\"bytes\":[230,156,186,230,158,132]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 544,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "口径",
+          "logprob": -0.000004410734,
+          "bytes": [
+            229,
+            143,
+            163,
+            229,
+            190,
+            132
+          ],
+          "top_logprobs": [
+            {
+              "token": "口径",
+              "logprob": -0.000004410734,
+              "bytes": [
+                229,
+                143,
+                163,
+                229,
+                190,
+                132
+              ]
+            },
+            {
+              "token": "机构",
+              "logprob": -12.818051,
+              "bytes": [
+                230,
+                156,
+                186,
+                230,
+                158,
+                132
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 544,
+        "lean": 270,
+        "reserialized": 544,
+        "factor": 2.015
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 51,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"略有\"},\"logprobs\":{\"content\":[{\"token\":\"略有\",\"logprob\":-0.025449544,\"bytes\":[231,149,165,230,156,137],\"top_logprobs\":[{\"token\":\"略有\",\"logprob\":-0.025449544,\"bytes\":[231,149,165,230,156,137]},{\"token\":\"不同\",\"logprob\":-4.045145,\"bytes\":[228,184,141,229,144,140]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 537,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "略有",
+          "logprob": -0.025449544,
+          "bytes": [
+            231,
+            149,
+            165,
+            230,
+            156,
+            137
+          ],
+          "top_logprobs": [
+            {
+              "token": "略有",
+              "logprob": -0.025449544,
+              "bytes": [
+                231,
+                149,
+                165,
+                230,
+                156,
+                137
+              ]
+            },
+            {
+              "token": "不同",
+              "logprob": -4.045145,
+              "bytes": [
+                228,
+                184,
+                141,
+                229,
+                144,
+                140
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 537,
+        "lean": 270,
+        "reserialized": 537,
+        "factor": 1.989
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 52,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"差异\"},\"logprobs\":{\"content\":[{\"token\":\"差异\",\"logprob\":-0.0030864482,\"bytes\":[229,183,174,229,188,130],\"top_logprobs\":[{\"token\":\"差异\",\"logprob\":-0.0030864482,\"bytes\":[229,183,174,229,188,130]},{\"token\":\"出入\",\"logprob\":-5.902077,\"bytes\":[229,135,186,229,133,165]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 539,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "差异",
+          "logprob": -0.0030864482,
+          "bytes": [
+            229,
+            183,
+            174,
+            229,
+            188,
+            130
+          ],
+          "top_logprobs": [
+            {
+              "token": "差异",
+              "logprob": -0.0030864482,
+              "bytes": [
+                229,
+                183,
+                174,
+                229,
+                188,
+                130
+              ]
+            },
+            {
+              "token": "出入",
+              "logprob": -5.902077,
+              "bytes": [
+                229,
+                135,
+                186,
+                229,
+                133,
+                165
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 539,
+        "lean": 270,
+        "reserialized": 539,
+        "factor": 1.996
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 53,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"，\"},\"logprobs\":{\"content\":[{\"token\":\"，\",\"logprob\":-0.0000030994368,\"bytes\":[239,188,140],\"top_logprobs\":[{\"token\":\"，\",\"logprob\":-0.0000030994368,\"bytes\":[239,188,140]},{\"token\":\"——\",\"logprob\":-12.721023,\"bytes\":[226,128,148,226,128,148]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 513,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "，",
+          "logprob": -0.0000030994368,
+          "bytes": [
+            239,
+            188,
+            140
+          ],
+          "top_logprobs": [
+            {
+              "token": "，",
+              "logprob": -0.0000030994368,
+              "bytes": [
+                239,
+                188,
+                140
+              ]
+            },
+            {
+              "token": "——",
+              "logprob": -12.721023,
+              "bytes": [
+                226,
+                128,
+                148,
+                226,
+                128,
+                148
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 513,
+        "lean": 267,
+        "reserialized": 513,
+        "factor": 1.921
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 54,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"但\"},\"logprobs\":{\"content\":[{\"token\":\"但\",\"logprob\":-0.17596796,\"bytes\":[228,189,134],\"top_logprobs\":[{\"token\":\"但\",\"logprob\":-0.17596796,\"bytes\":[228,189,134]},{\"token\":\"例如\",\"logprob\":-1.9048841,\"bytes\":[228,190,139,229,166,130]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 503,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "但",
+          "logprob": -0.17596796,
+          "bytes": [
+            228,
+            189,
+            134
+          ],
+          "top_logprobs": [
+            {
+              "token": "但",
+              "logprob": -0.17596796,
+              "bytes": [
+                228,
+                189,
+                134
+              ]
+            },
+            {
+              "token": "例如",
+              "logprob": -1.9048841,
+              "bytes": [
+                228,
+                190,
+                139,
+                229,
+                166,
+                130
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 503,
+        "lean": 267,
+        "reserialized": 503,
+        "factor": 1.884
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 55,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"主流\"},\"logprobs\":{\"content\":[{\"token\":\"主流\",\"logprob\":-0.6774007,\"bytes\":[228,184,187,230,181,129],\"top_logprobs\":[{\"token\":\"主流\",\"logprob\":-0.6774007,\"bytes\":[228,184,187,230,181,129]},{\"token\":\"官方\",\"logprob\":-1.4475957,\"bytes\":[229,174,152,230,150,185]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 534,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "主流",
+          "logprob": -0.6774007,
+          "bytes": [
+            228,
+            184,
+            187,
+            230,
+            181,
+            129
+          ],
+          "top_logprobs": [
+            {
+              "token": "主流",
+              "logprob": -0.6774007,
+              "bytes": [
+                228,
+                184,
+                187,
+                230,
+                181,
+                129
+              ]
+            },
+            {
+              "token": "官方",
+              "logprob": -1.4475957,
+              "bytes": [
+                229,
+                174,
+                152,
+                230,
+                150,
+                185
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 534,
+        "lean": 270,
+        "reserialized": 534,
+        "factor": 1.978
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 56,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"报道\"},\"logprobs\":{\"content\":[{\"token\":\"报道\",\"logprob\":-0.32977822,\"bytes\":[230,138,165,233,129,147],\"top_logprobs\":[{\"token\":\"报道\",\"logprob\":-0.32977822,\"bytes\":[230,138,165,233,129,147]},{\"token\":\"官方\",\"logprob\":-2.595529,\"bytes\":[229,174,152,230,150,185]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 535,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "报道",
+          "logprob": -0.32977822,
+          "bytes": [
+            230,
+            138,
+            165,
+            233,
+            129,
+            147
+          ],
+          "top_logprobs": [
+            {
+              "token": "报道",
+              "logprob": -0.32977822,
+              "bytes": [
+                230,
+                138,
+                165,
+                233,
+                129,
+                147
+              ]
+            },
+            {
+              "token": "官方",
+              "logprob": -2.595529,
+              "bytes": [
+                229,
+                174,
+                152,
+                230,
+                150,
+                185
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 535,
+        "lean": 270,
+        "reserialized": 535,
+        "factor": 1.981
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 57,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"均\"},\"logprobs\":{\"content\":[{\"token\":\"均\",\"logprob\":-0.060197845,\"bytes\":[229,157,135],\"top_logprobs\":[{\"token\":\"均\",\"logprob\":-0.060197845,\"bytes\":[229,157,135]},{\"token\":\"和\",\"logprob\":-3.0862103,\"bytes\":[229,146,140]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 490,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "均",
+          "logprob": -0.060197845,
+          "bytes": [
+            229,
+            157,
+            135
+          ],
+          "top_logprobs": [
+            {
+              "token": "均",
+              "logprob": -0.060197845,
+              "bytes": [
+                229,
+                157,
+                135
+              ]
+            },
+            {
+              "token": "和",
+              "logprob": -3.0862103,
+              "bytes": [
+                229,
+                146,
+                140
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 490,
+        "lean": 267,
+        "reserialized": 490,
+        "factor": 1.835
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 58,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"采用\"},\"logprobs\":{\"content\":[{\"token\":\"采用\",\"logprob\":-2.0986335,\"bytes\":[233,135,135,231,148,168],\"top_logprobs\":[{\"token\":\"引用\",\"logprob\":-0.2462355,\"bytes\":[229,188,149,231,148,168]},{\"token\":\"采用\",\"logprob\":-2.0986335,\"bytes\":[233,135,135,231,148,168]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 534,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "采用",
+          "logprob": -2.0986335,
+          "bytes": [
+            233,
+            135,
+            135,
+            231,
+            148,
+            168
+          ],
+          "top_logprobs": [
+            {
+              "token": "引用",
+              "logprob": -0.2462355,
+              "bytes": [
+                229,
+                188,
+                149,
+                231,
+                148,
+                168
+              ]
+            },
+            {
+              "token": "采用",
+              "logprob": -2.0986335,
+              "bytes": [
+                233,
+                135,
+                135,
+                231,
+                148,
+                168
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 534,
+        "lean": 270,
+        "reserialized": 534,
+        "factor": 1.978
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 59,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"该\"},\"logprobs\":{\"content\":[{\"token\":\"该\",\"logprob\":-1.8172708,\"bytes\":[232,175,165],\"top_logprobs\":[{\"token\":\"此\",\"logprob\":-0.42243433,\"bytes\":[230,173,164]},{\"token\":\"该\",\"logprob\":-1.8172708,\"bytes\":[232,175,165]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 487,
+      "role": "text",
+      "deltaChars": 1,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "该",
+          "logprob": -1.8172708,
+          "bytes": [
+            232,
+            175,
+            165
+          ],
+          "top_logprobs": [
+            {
+              "token": "此",
+              "logprob": -0.42243433,
+              "bytes": [
+                230,
+                173,
+                164
+              ]
+            },
+            {
+              "token": "该",
+              "logprob": -1.8172708,
+              "bytes": [
+                232,
+                175,
+                165
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 487,
+        "lean": 267,
+        "reserialized": 487,
+        "factor": 1.824
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 60,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"数值\"},\"logprobs\":{\"content\":[{\"token\":\"数值\",\"logprob\":-0.12594382,\"bytes\":[230,149,176,229,128,188],\"top_logprobs\":[{\"token\":\"数值\",\"logprob\":-0.12594382,\"bytes\":[230,149,176,229,128,188]},{\"token\":\"数据\",\"logprob\":-2.4350526,\"bytes\":[230,149,176,230,141,174]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 536,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "数值",
+          "logprob": -0.12594382,
+          "bytes": [
+            230,
+            149,
+            176,
+            229,
+            128,
+            188
+          ],
+          "top_logprobs": [
+            {
+              "token": "数值",
+              "logprob": -0.12594382,
+              "bytes": [
+                230,
+                149,
+                176,
+                229,
+                128,
+                188
+              ]
+            },
+            {
+              "token": "数据",
+              "logprob": -2.4350526,
+              "bytes": [
+                230,
+                149,
+                176,
+                230,
+                141,
+                174
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 536,
+        "lean": 270,
+        "reserialized": 536,
+        "factor": 1.985
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 61,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"。）\"},\"logprobs\":{\"content\":[{\"token\":\"。）\",\"logprob\":-0.039117396,\"bytes\":[227,128,130,239,188,137],\"top_logprobs\":[{\"token\":\"。）\",\"logprob\":-0.039117396,\"bytes\":[227,128,130,239,188,137]},{\"token\":\"附近\",\"logprob\":-3.6948524,\"bytes\":[233,153,132,232,191,145]}]}]},\"finish_reason\":null}],\"usage\":null}",
+      "bytesRaw": 538,
+      "role": "text",
+      "deltaChars": 2,
+      "logprobs": {
+        "present": true,
+        "isNull": false,
+        "content": {
+          "present": true,
+          "isNull": false,
+          "count": 1
+        },
+        "reasoning_content": {
+          "present": false,
+          "isNull": false,
+          "count": 0
+        }
+      },
+      "tokensContent": [
+        {
+          "token": "。）",
+          "logprob": -0.039117396,
+          "bytes": [
+            227,
+            128,
+            130,
+            239,
+            188,
+            137
+          ],
+          "top_logprobs": [
+            {
+              "token": "。）",
+              "logprob": -0.039117396,
+              "bytes": [
+                227,
+                128,
+                130,
+                239,
+                188,
+                137
+              ]
+            },
+            {
+              "token": "附近",
+              "logprob": -3.6948524,
+              "bytes": [
+                233,
+                153,
+                132,
+                232,
+                191,
+                145
+              ]
+            }
+          ]
+        }
+      ],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 538,
+        "lean": 270,
+        "reserialized": 538,
+        "factor": 1.993
+      },
+      "finish_reason": null,
+      "usage": null
+    },
+    {
+      "seq": 62,
+      "raw": "{\"id\":\"e4910047-156f-4386-a7b9-f543968c46df\",\"object\":\"chat.completion.chunk\",\"created\":1787228994,\"model\":\"deepseek-v4-flash\",\"system_fingerprint\":\"a26a7955944dc5c60445bff77fac9c8e\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"\"},\"logprobs\":null,\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":60,\"completion_tokens\":61,\"total_tokens\":121,\"prompt_tokens_details\":{\"cached_tokens\":0},\"prompt_cache_hit_tokens\":0,\"prompt_cache_miss_tokens\":60}}",
+      "bytesRaw": 442,
+      "role": "text",
+      "deltaChars": 0,
+      "logprobs": {
+        "present": true,
+        "isNull": true,
+        "content": {
+          "present": true,
+          "isNull": true,
+          "count": 0
+        },
+        "reasoning_content": {
+          "present": true,
+          "isNull": true,
+          "count": 0
+        }
+      },
+      "tokensContent": [],
+      "tokensReasoning": [],
+      "bytes": {
+        "raw": 442,
+        "lean": 426,
+        "reserialized": 442,
+        "factor": 1.038
+      },
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 60,
+        "completion_tokens": 61,
+        "total_tokens": 121,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 60
+      }
+    }
+  ]
+}

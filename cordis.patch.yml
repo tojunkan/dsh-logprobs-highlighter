@@ -1,0 +1,37 @@
+# logprobs-highlighter bundle patch: mounts the plugin row into the host
+# composition of a dsh profile. The server plugin starts the 127.0.0.1:8787
+# reverse proxy (inject logprobs → capture dual-field probabilities → strip →
+# forward), takes over llm-deepseek.baseURL, associates captures with
+# (sessionId, turn, step), and exposes /plugins/logprobs-highlighter/* routes.
+#
+# Install: `dsh plugin --profile web add "link:<project root>"`. The `dsh
+# plugin` command pnpm-installs the package into the profile and reconciles it
+# into the profile's `dsh.profile.bundles` layer list.
+- insert:
+    - id: logprobs-highlighter
+      # Node-resolvable package name — must stay in sync with package.json
+      # `name`. Quoted because `@` is a reserved indicator in YAML and cannot
+      # open a plain scalar.
+      name: '@logprobs/logprobs-highlighter'
+      config:
+        enabled: true
+        # Reverse proxy listen port (127.0.0.1 only).
+        proxyPort: 8787
+        # true → take over llm-deepseek.baseURL and restore on dispose;
+        # false → do not touch settings (rely on $DEEPSEEK_BASE_URL).
+        manageBaseUrl: true
+        # Upstream used when manageBaseUrl=false (takeover mode uses the
+        # pre-takeover baseURL automatically).
+        upstreamBaseUrl: https://api.deepseek.com
+        # Questionnaire decision: 0 | 2 | 5 | 20 (default 2).
+        topLogprobs: 2
+        # Capture directory (compatible with deepseek-v4-* and legacy aliases).
+        modelGlob: deepseek-*
+        # In-memory ring buffer: 20 entries / 1 hour (first-in first-evicted).
+        ringSize: 20
+        ringTtlMs: 3600000
+        # Mutation threshold for the M2 marking engine (tuned at M4).
+        mutationZ: -2.5
+        # Assoc debug: print the sanitized first assistant/message event shape
+        # (message content removed) for integration debugging. Default off.
+        debugAssoc: false

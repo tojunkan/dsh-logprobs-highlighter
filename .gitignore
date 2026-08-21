@@ -1,0 +1,12 @@
+# 构建/安装产物（不提交）
+node_modules/
+.pnpm-store/
+.npm-cache/
+*.replay-tmp
+
+# 本地自测临时文件
+.m0-mock-server.mjs
+.verify-samples.mjs
+
+# 团队协作内部状态（AgentTeams 消息/任务，不提交）
+.agent-teams/
