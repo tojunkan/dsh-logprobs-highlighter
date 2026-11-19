@@ -2,9 +2,10 @@
 node_modules/
 .pnpm-store/
 .npm-cache/
-*.replay-tmp
 
-# 本地自测临时文件
+# 本地临时文件与日志
+*.log
+*.replay-tmp
 .m0-mock-server.mjs
 .verify-samples.mjs
 
