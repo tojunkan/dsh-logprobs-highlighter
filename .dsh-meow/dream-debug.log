@@ -1,0 +1,15 @@
+[2026-11-18T11:56:57.456Z] turn-stopping pid=5732 sid=a1fd8b0f reason=none wasDream=false
+[2026-11-18T11:57:02.180Z] turn-stopping pid=5732 sid=a1fd8b0f reason=none wasDream=false
+[2026-11-18T11:57:37.325Z] pre-step first pid=5732 sid=a1fd8b0f priorUser=1 userMsgs=1
+[2026-11-18T11:57:37.326Z] hit-chain pid=5732 sid=a1fd8b0f textLen=43 hit=null
+[2026-11-18T11:59:20.875Z] hit-chain pid=5732 sid=a1fd8b0f textLen=21 hit=null
+[2026-11-18T11:59:25.988Z] turn-stopping pid=5732 sid=a1fd8b0f reason=none wasDream=false
+[2026-11-18T13:17:55.161Z] check sid=a1fd8b0f active=false idle=4709s
+[2026-11-18T14:51:21.334Z] check sid=a1fd8b0f active=false idle=10315s
+[2026-11-18T15:44:59.517Z] check sid=a1fd8b0f active=false idle=13534s
+[2026-11-18T15:44:59.517Z] check agent-missing sid=a1fd8b0f -> try resume
+[2026-11-18T15:44:59.518Z] check resume owner sid=a1fd8b0f via sessionController
+[2026-11-18T15:44:59.597Z] check agent-resumed sid=a1fd8b0f
+[2026-11-18T15:44:59.624Z] dream start pid=14040 session=a1fd8b0f rounds=1 T=1795003165974
+[2026-11-18T15:45:05.113Z] turn-stopping pid=14040 sid=a1fd8b0f reason=none wasDream=true
+[2026-11-18T15:45:05.164Z] dream done session=a1fd8b0f groups=1 stamped=0

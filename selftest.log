@@ -1,0 +1,179 @@
+Part A — 真实样本回放（本地自测：真实 M0 数据复算，非新请求）
+  ok  thinking: 非空 delta.content 的 chunk 全部归类 text（24/24 不被吞入 reasoning）
+  ok  thinking: content 段 24 tokens（1/chunk）
+  ok  thinking: reasoning 段 205 tokens（对齐 205/205）
+  ok  thinking: chunk 总数 231
+  ok  nothinking: content 段 61 tokens（对齐 61/61）
+  ok  nothinking: reasoning 段 0 tokens
+  ok  nothinking: chunk 总数 63
+shared 工具（本地自测）
+  ok  matchesModelGlob: deepseek-v4-flash 命中 deepseek-*
+  ok  matchesModelGlob: deepseek-chat 旧别名命中
+  ok  matchesModelGlob: gpt-4o 不命中
+  ok  isLogprobsRejection: 400+logprobs 关键字
+  ok  isLogprobsRejection: 400+unsupported
+  ok  isLogprobsRejection: 401 不算
+  ok  isLogprobsRejection: 400 无关键字不算
+  ok  stripLogprobs: 双字段一并剥掉
+  ok  normalizeToken: 最小字段
+
+Part B — mock 上游反代行为（本地自测：合成数据，非真实请求）
+  ok  B1: 上游收到注入 logprobs:true + top_logprobs:2
+  ok  B1: Authorization 原样到达上游（SUG-2）
+  ok  B1: 客户端收到剥皮流（无 logprobs 字段）
+  ok  B1: 捕获 1 条且 complete
+  ok  B1: attach 出队成功且写索引
+  ok  B1: reasoningState=present（reasoning logprobs 存在）
+  ok  B1: blocks 双字段（reasoning 1 token + text 2 tokens）
+  ok  B1: text token 内容与 top 归一化
+  ok  B1: usage 归一化
+  ok  B1: 索引 (1,2) 可查询
+  ok  B1: 关联后 pendingAssoc 归零
+  ok  B1: assoc 字段写入
+  ok  B2: 非 DeepSeek 未注入
+  ok  B2: 胖流原样透传（含 logprobs 字段）
+  ok  B2: 不产生捕获
+  ok  B3: compact 未注入
+  ok  B3: compact 透传成功
+  ok  B3: compact 不产生捕获
+  ok  B4: GET /health 透传
+
+Part B5 — 400 降级重试 + 模型黑名单（本地自测：mock）
+  ok  B5: 首次请求带注入
+  ok  B5: 重试请求去掉注入
+  ok  B5: 客户端收到 200（重试成功）
+  ok  B5: 模型记入黑名单
+  ok  B5: 降级成功不产生捕获条目（lean 不捕获）
+  ok  B5: 黑名单后第二次请求不注入
+  ok  B5: 黑名单后仍正常转发
+  ok  B5: 黑名单后不产生捕获
+  ok  B5: 其他模型仍支持
+
+Part B6 — 非 logprobs 400 原样透传（本地自测：mock）
+  ok  B6: 收到 400 且未重试（只 1 个请求）
+  ok  B6: 错误体原样（含 400 标记）
+  ok  B6: 模型未被拉黑（非 logprobs 拒绝）
+
+Part B7 — gzip 上游（BLK-1 回归，本地自测：mock）
+  ok  B7: 客户端响应无 content-encoding 头
+  ok  B7: 响应体为明文 data: 帧（可解析）
+  ok  B7: gzip 下捕获正常（complete + text tokens）
+  ok  B7: gzip 下捕获双字段
+
+Part B8 — 非流式响应捕获（IMP-1，本地自测：mock）
+  ok  B8: 非流式响应捕获 text tokens（1:1 对齐，无 index）
+  ok  B8: 非流式响应捕获 reasoning tokens
+  ok  B8: 非流式剥皮转发（响应体无 logprobs）
+
+Part B9 — aborted 语义（IMP-4，本地自测：mock）
+  ok  B9: 流中断条目标记 aborted（complete:false）
+  ok  B9: pendingCount 只数 complete（aborted 不计）
+  ok  B9: aborted 条目不入索引
+  ok  B9: [aborted,complete] 混排 → attach 返回 complete
+  ok  B9: 混排后 FIFO 已 GC（pendingCount=0）
+
+Part B10 — FIFO 随环形淘汰清理（IMP-2 回归，本地自测）
+  ok  B10: ring 只剩 2 条
+  ok  B10: FIFO 同步清理（pendingAssoc=2 而非 3）
+  ok  B10: attach 只出队存活条目（req-2, req-3）
+  ok  B10: 已淘汰条目不可查询（无悬挂索引）
+
+Part B11 — 422 降级 + 重试仍失败（SUG-6，本地自测：mock）
+  ok  B11: 422 注入 → 重试去注入 → 200
+  ok  B11: 422 降级记黑名单
+  ok  B11: 重试仍失败 → 原样透传错误体（400 + forever-error）
+  ok  B11: 重试仍失败 → 共 2 个请求（重试一次）
+  ok  B11: 重试仍失败 → 不记黑名单
+
+Part C1 — baseurl 接管/还原/自愈（IMP-5，本地自测：mock ctx）
+  ok  C1a: 接管写入 127.0.0.1:8787
+  ok  C1a: original 记录旧值
+  ok  C1a: restore 还原旧值
+  ok  C1b: 当前值已非我们写入 → 跳过还原
+  ok  C1c: 自愈失败 → 不托管
+  ok  C1c: 残留 baseURL 回滚为默认直连
+  ok  C1c: 自愈标记
+  ok  C1d: 命名空间未就绪 → 暂未接管
+  ok  C1d: 事件重试后接管成功
+  ok  C1e: manageBaseUrl=false 不接管
+
+Part C2 — routes /tokens 与 /status（IMP-5，本地自测：mock ctx）
+  ok  C2: /tokens 命中 captured:true
+  ok  C2: key/reasoningState/usage/blocks 齐全
+  ok  C2: confidence=exp(logprob)
+  ok  C2: message.id 来自 assoc
+  ok  C2: assoc-pending 返回 captured:false + notCapturedReason
+  ok  C2: not-found 返回 captured:false
+  ok  C2: 缺 step → 400 missing-param
+  ok  C2: /status ok + proxy.listening + upstream 实际值
+  ok  C2: /status baseUrl/capture/config 字段
+
+Part C3 — assoc 事件形状兼容 + FIFO 顺序（IMP-3/IMP-5，本地自测：mock ctx）
+  ok  C3a: FIFO 顺序——第一条事件关联 req-f1
+  ok  C3a: 第二条事件关联 req-f2
+  ok  C3b: 事件根字段形状也能关联
+  ok  C3c: debug 打印一次事件形状
+  ok  C3c: 打印内容已脱敏（不含正文）
+  ok  C3c: debug 下关联仍正常
+
+Part D — client-utils（M3 纯函数，本地自测）
+  ok  D: logprobToHue(0)=240（蓝）
+  ok  D: logprobToHue(-10)=0（红）
+  ok  D: logprobToHue(-5)=120（绿）
+  ok  D: logprobToHue 下钳制（-50→0）
+  ok  D: logprobToHue 上钳制（+5→240）
+  ok  D: logprobToHue(null)=null（灰）
+  ok  D: tokenHue 无 logprob 灰
+  ok  D: formatConfidence(0.969)=96.9%
+  ok  D: formatConfidence(1e-8)=≈1.0e-8
+  ok  D: formatConfidence(null)=—
+  ok  D: formatLogprob(-0.0312)≈-0.031
+  ok  D: formatLogprob(1.3e-8) 指数记法
+  ok  D: confidence<10% → lowConfidence
+  ok  D: Top1-Top2 差距<0.1 → hesitation
+  ok  D: 高置信+差距大 → 不标
+  ok  D: 无 logprob → 不标
+  ok  D: topBarData 长度与顺序
+  ok  D: 宽度=相对占比（最高者 100%）
+  ok  D: -9999 哨兵 → 概率 0 → 宽度 0
+  ok  D: topBarData([])=[]
+  ok  D: capturedReasonText(assoc-pending) 非空
+  ok  D: capturedReasonText(null)=null
+  ok  D: reasoningStateText(present) 说明不标记
+  ok  D: findClosingAssistantStep 取含文本的最后一步
+  ok  D: findClosingAssistantStep 空输入 → null
+
+Part D2 — M3.5 渲染纯函数（token 匹配 / 代码着色 / mdast 渲染器，本地自测）
+  ok  D2: 标识符命中
+  ok  D2: 数字命中
+  ok  D2: 语法符号不命中
+  ok  D2: 关键字按标识符处理
+  ok  D2: 全匹配 → 3 个 token 段
+  ok  D2: 拼接还原正文
+  ok  D2: 交错纯文本
+  ok  D2: 跨文本段游标推进
+  ok  D2: token 属于后续文本 → 停止不吞并
+  ok  D2: 代码块保守着色（只标 const/x/1）
+  ok  D2: 连续 image 合并为一组
+  ok  D2: mdast heading+strong+inlineCode 结构
+  ok  D2: 代码块 pre>code + 保守着色（3 个 span）
+  ok  D2: GFM 表格 th/td 结构
+  ok  D2: 原始 HTML 跳过（不渲染 script）
+  ok  D2: html 后段落保留
+
+Part D3 — t15 重要项回归（真实回放 / 卡死游标 / link 白名单 / 共享缓存，本地自测）
+  ok  D3: m0-sample-nothinking.json 真实回放——61 tokens 全消费
+  ok  D3: m0-sample-nothinking.json 真实回放——拼接逐字符一致
+  ok  D3: m0-sample-thinking.json 真实回放——24 tokens 全消费
+  ok  D3: m0-sample-thinking.json 真实回放——拼接逐字符一致
+  ok  D3: 图片字符 token 被跳过（不卡死游标）
+  ok  D3: 图片之后的文本块仍上色
+  ok  D3: 全部真实 token 消费完（remaining=0）
+  ok  D3: javascript:/data: link 不渲染为 <a href>
+  ok  D3: http/mailto link 正常渲染
+  ok  D3: 并发同键只发一次请求
+  ok  D3: 结果缓存命中（仍 1 次请求）
+  ok  D3: 失败不缓存（允许重试）
+  ok  D3: assoc-pending 不缓存（每次新请求）
+
+结果: 147 通过, 0 失败

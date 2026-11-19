@@ -1,37 +1,45 @@
-# logprobs-highlighter bundle patch: mounts the plugin row into the host
-# composition of a dsh profile. The server plugin starts the 127.0.0.1:8787
-# reverse proxy (inject logprobs → capture dual-field probabilities → strip →
-# forward), takes over llm-deepseek.baseURL, associates captures with
-# (sessionId, turn, step), and exposes /plugins/logprobs-highlighter/* routes.
+# logprobs-highlighter bundle patch: mounts the provider plugin into the host
+# composition of a dsh profile.
 #
-# Install: `dsh plugin --profile web add "link:<project root>"`. The `dsh
-# plugin` command pnpm-installs the package into the profile and reconciles it
-# into the profile's `dsh.profile.bundles` layer list.
+# Provider mode (no reverse proxy, no baseURL takeover): the plugin registers an
+# llm provider route named `deepseek-logprobs` that calls DeepSeek's
+# chat/completions with logprobs/top_logprobs, maps the SSE stream back to dsh
+# StreamChunks, captures token-level probabilities in memory, mirrors the same
+# data to JSONL under $DSH_HOME/logprobs-highlighter, and exposes
+# /plugins/logprobs-highlighter/{status,tokens,debug,captures}.
+#
+# Install: `dsh plugin --profile web add "link:<project root>"`, then pick the
+# "DeepSeek (logprobs)" provider in dsh's model selector.
 - insert:
     - id: logprobs-highlighter
-      # Node-resolvable package name — must stay in sync with package.json
-      # `name`. Quoted because `@` is a reserved indicator in YAML and cannot
-      # open a plain scalar.
+      # Node-resolvable package name — must stay in sync with package.json `name`.
+      # Quoted because `@` is a reserved indicator in YAML.
       name: '@logprobs/logprobs-highlighter'
       config:
         enabled: true
-        # Reverse proxy listen port (127.0.0.1 only).
-        proxyPort: 8787
-        # true → take over llm-deepseek.baseURL and restore on dispose;
-        # false → do not touch settings (rely on $DEEPSEEK_BASE_URL).
-        manageBaseUrl: true
-        # Upstream used when manageBaseUrl=false (takeover mode uses the
-        # pre-takeover baseURL automatically).
-        upstreamBaseUrl: https://api.deepseek.com
-        # Questionnaire decision: 0 | 2 | 5 | 20 (default 2).
+        # DeepSeek OpenAI-compatible root; requests go to {baseUrl}/chat/completions.
+        baseUrl: https://api.deepseek.com
+        # Credential reference: resolved through dsh's credentials service first,
+        # then the launching environment.
+        apiKeyEnv: DEEPSEEK_API_KEY
+        # logprobs: top_logprobs N (0 | 2 | 5 | 20).
         topLogprobs: 2
-        # Capture directory (compatible with deepseek-v4-* and legacy aliases).
-        modelGlob: deepseek-*
-        # In-memory ring buffer: 20 entries / 1 hour (first-in first-evicted).
+        # Explicit thinking mode (thinking.type=enabled).
+        thinking: true
+        # Default reasoning effort passed as reasoning_effort (low | high | max).
+        reasoningEffort: high
+        # Default output cap when the caller omits maxTokens.
+        maxTokens: 8192
+        # Claimed context window used by dsh capacity checks.
+        defaultContextWindow: 1000000
+        # In-memory ring buffer: entries / TTL.
         ringSize: 20
         ringTtlMs: 3600000
-        # Mutation threshold for the M2 marking engine (tuned at M4).
-        mutationZ: -2.5
-        # Assoc debug: print the sanitized first assistant/message event shape
-        # (message content removed) for integration debugging. Default off.
+        # Assoc debug: print the sanitized first assistant/message event shape.
         debugAssoc: false
+        # JSONL mirror: full capture (text + every token) or summary only.
+        recordFull: true
+        # Empty string = $DSH_HOME/logprobs-highlighter
+        outputDir: ''
+        maxFileBytes: 52428800
+        keepFiles: 5

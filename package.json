@@ -1,7 +1,7 @@
 {
   "name": "@logprobs/logprobs-highlighter",
-  "version": "0.1.0",
-  "description": "Logprobs Highlighter for DeepSeek Harness: sidecar plugin that proxies DeepSeek chat completions through 127.0.0.1:8787, injects logprobs/top_logprobs, captures token-level log probabilities (content + reasoning_content, M0-verified dual fields), strips and forwards a lean stream to dsh, associates captures with (sessionId, turn, step), and exposes /plugins/logprobs-highlighter/* routes for the client renderer.",
+  "version": "0.2.0",
+  "description": "Logprobs Highlighter for DeepSeek Harness (provider mode): registers a dsh llm provider route that calls DeepSeek chat/completions with logprobs, captures per-token probabilities into an in-memory ring buffer, mirrors the same data to JSONL for offline analysis, and exposes /plugins/logprobs-highlighter/* for inspection.",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -40,29 +40,20 @@
   },
   "scripts": {
     "test": "node test/self-test.mjs",
-    "check": "node --check lib/index.js && node --check lib/proxy.js && node --check lib/capture.js && node --check lib/assoc.js && node --check lib/baseurl.js && node --check lib/routes.js && node --check lib/shared.js && node --check lib/client.js",
-    "build:client": "node scripts/build-client.mjs"
+    "check": "node --check lib/index.js && node --check lib/provider.js && node --check lib/wire.js && node --check lib/sentences.js && node --check lib/capture.js && node --check lib/assoc.js && node --check lib/routes.js && node --check lib/recorder.js && node --check lib/shared.js",
+    "build:client": "node scripts/build-client.mjs",
+    "analyze": "node scripts/analyze-captures.mjs"
   },
   "peerDependencies": {
-    "@deepseek-ai/cordis": "^4.0.1",
-    "@deepseek-ai/dsh-client-locale": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-client-runtime": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-client-ui-conversation": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-client-ui-primitives": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-client-ui-slots": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-llm": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-session": "^0.1.0-rc.6",
-    "@deepseek-ai/dsh-settings": "^0.1.0-rc.6",
-    "@deepseek-ai/schemastery": "^3.18.1",
-    "react": "^18.2.0"
-  },
-  "devDependencies": {
-    "esbuild": "^0.28.2",
-    "mdast-util-from-markdown": "^2.0.3",
-    "mdast-util-gfm": "^3.1.0",
-    "micromark-extension-gfm": "^3.0.0"
+    "@deepseek-ai/cordis": "~4.0.4",
+    "@deepseek-ai/dsh-credentials": "*",
+    "@deepseek-ai/dsh-llm": "*",
+    "@deepseek-ai/schemastery": "^3.18.1"
   },
   "dependencies": {
     "@deepseek-ai/schemastery": "^3.18.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
   }
 }
