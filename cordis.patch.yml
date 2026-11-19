@@ -8,13 +8,12 @@
 # data to JSONL under $DSH_HOME/logprobs-highlighter, and exposes
 # /plugins/logprobs-highlighter/{status,tokens,debug,captures}.
 #
-# Install: `dsh plugin --profile web add "link:<project root>"`, then pick the
+# Install: `dsh plugin --profile web add dsh-logprobs-highlighter`, then pick the
 # "DeepSeek (logprobs)" provider in dsh's model selector.
 - insert:
     - id: logprobs-highlighter
       # Node-resolvable package name — must stay in sync with package.json `name`.
-      # Quoted because `@` is a reserved indicator in YAML.
-      name: '@logprobs/logprobs-highlighter'
+      name: 'dsh-logprobs-highlighter'
       config:
         enabled: true
         # DeepSeek OpenAI-compatible root; requests go to {baseUrl}/chat/completions.

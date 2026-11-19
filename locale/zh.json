@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "置信度透视",
+    "description": "注册一条自带的 DeepSeek provider 路由，请求 token 级 logprobs，把回答里模型最没把握的句子标红。悬停可对比实写 token 与模型备选，并标注这个红句是否命中。需要你自己的 DeepSeek API key，回答正文与 token 概率会写入 $DSH_HOME 下的本地 JSONL；红句只代表模型在这里犹豫，不代表一定出错。"
+  }
+}

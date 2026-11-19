@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Logprobs highlighter",
+    "description": "Runs its own DeepSeek provider route, asks the API for token-level logprobs, and highlights the sentences in a reply where the model was least sure of the next token. Hover a mark to compare the chosen token with the model's alternatives and record whether the highlight was right. Needs your own DeepSeek API key, writes replies and token probabilities to local JSONL under $DSH_HOME, and marks hesitation rather than proven error."
+  }
+}
