@@ -23,7 +23,7 @@
         # then the launching environment.
         apiKeyEnv: DEEPSEEK_API_KEY
         # logprobs: top_logprobs N (0 | 2 | 5 | 20).
-        topLogprobs: 2
+        topLogprobs: 5
         # Explicit thinking mode (thinking.type=enabled).
         thinking: true
         # Default reasoning effort passed as reasoning_effort (low | high | max).
@@ -37,6 +37,13 @@
         ringTtlMs: 3600000
         # Assoc debug: print the sanitized first assistant/message event shape.
         debugAssoc: false
+        # 红句 annotation：流结束后生成，初始 verdict=unsure；hover 可人工改判。
+        annotationEnabled: true
+        # sentence = 保存句子原文；none = 只保存 hash/offset/特征。
+        annotationStoreText: sentence
+        annotationMaxSentenceChars: 500
+        annotationMaxFileBytes: 10485760
+        annotationKeepFiles: 20
         # JSONL mirror: full capture (text + every token) or summary only.
         recordFull: true
         # Empty string = $DSH_HOME/logprobs-highlighter

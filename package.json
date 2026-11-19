@@ -40,8 +40,9 @@
   },
   "scripts": {
     "test": "node test/self-test.mjs",
-    "check": "node --check lib/index.js && node --check lib/provider.js && node --check lib/wire.js && node --check lib/sentences.js && node --check lib/capture.js && node --check lib/assoc.js && node --check lib/routes.js && node --check lib/recorder.js && node --check lib/shared.js",
+    "check": "node --check lib/index.js && node --check lib/provider.js && node --check lib/wire.js && node --check lib/sentences.js && node --check lib/capture.js && node --check lib/assoc.js && node --check lib/routes.js && node --check lib/recorder.js && node --check lib/annotations.js && node --check lib/shared.js && node --check scripts/rebuild-annotations.mjs",
     "build:client": "node scripts/build-client.mjs",
+    "rebuild:annotations": "node scripts/rebuild-annotations.mjs",
     "analyze": "node scripts/analyze-captures.mjs"
   },
   "peerDependencies": {

@@ -10,3 +10,6 @@ node_modules/
 
 # 团队协作内部状态（AgentTeams 消息/任务，不提交）
 .agent-teams/
+
+# dsh 记忆插件
+.dsh-meow/

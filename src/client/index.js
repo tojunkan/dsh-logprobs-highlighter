@@ -66,8 +66,8 @@ function LogprobsSentences(props) {
       }
       if (cancelled) return;
       if (data && data.captured && Array.isArray(data.sentences)) {
-        dataRef.current = data.sentences;
-        paint(turnNo, data.sentences);
+        dataRef.current = data;
+        paint(turnNo, data);
         return;
       }
       tries += 1;

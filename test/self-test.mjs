@@ -21,6 +21,8 @@ import {
 import { createCaptureStore, createEntry } from "../lib/capture.js";
 import { createRecorder, summarize } from "../lib/recorder.js";
 import { createAdapter, PROVIDER } from "../lib/provider.js";
+import { createAnnotationStore } from "../lib/annotations.js";
+import { toPlainSentence, tokenSpans } from "../lib/sentences.js";
 
 let passed = 0;
 let failed = 0;
@@ -595,6 +597,167 @@ await testAsync("D5: 缺凭证 → MISSING_CREDENTIAL", async () => {
   }
   assert.ok(caught, "应当抛错");
   assert.equal(caught.code, "MISSING_CREDENTIAL");
+});
+
+/* ------------------------------------------------------------------ *
+ * Part E — annotation 存储
+ * ------------------------------------------------------------------ */
+
+console.log("\nPart E — annotation 存储");
+
+test("E1: toPlainSentence 丢弃 inline code / math / image alt", () => {
+  const plain = toPlainSentence("正常 `code` 文本 $x$ ![alt](img.png) 结尾。");
+  assert.equal(plain, "正常文本结尾。");
+});
+
+test("E1b: 半个 UTF-8 token 按 bytes 拼回，不产生偏移漂移", () => {
+  const text = "典啖食";
+  const tokens = [
+    { text: "典", logprob: -0.1, top: [] },
+    { text: "\\xe5\\x95", logprob: -0.2, top: [] },
+    { text: "\\x96", logprob: -0.3, top: [] },
+    { text: "食", logprob: -0.1, top: [] },
+  ];
+  const spans = tokenSpans(tokens, text);
+  assert.equal(spans.map((s) => s.text).join(""), text);
+  assert.equal(spans.at(-1).end, text.length);
+  const middle = spans.find((s) => s.text === "啖");
+  assert.ok(middle, "半个字符应合并成一个 span");
+  assert.equal(middle.start, 1);
+  assert.equal(middle.end, 2);
+});
+
+await testAsync("E2: 红句生成 annotation，初始 verdict=unsure", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "lph-ann-"));
+  try {
+    const store = createAnnotationStore({
+      outputDir: dir,
+      config: {
+        annotationEnabled: true,
+        annotationStoreText: "sentence",
+        annotationMaxSentenceChars: 500,
+        annotationMaxFileBytes: 1024 * 1024,
+        annotationKeepFiles: 5,
+        topLogprobs: 5,
+        redThreshold: 0.05,
+      },
+      logger: quietLogger,
+    });
+    const text = "这是一个测试句子，用来验证标注逻辑是否正确。";
+    const tokens = [...text].map((ch, i) => ({
+      text: ch,
+      logprob: i === 4 ? -4 : -0.01,
+      top: [{ token: ch, logprob: i === 4 ? -4 : -0.01 }],
+    }));
+    const entry = createEntry({
+      id: "req-ann-1",
+      sessionId: "sess-ann",
+      provider: PROVIDER,
+      model: "deepseek-flash",
+    });
+    entry.complete = true;
+    entry.assoc = { turn: 1, step: 0, messageId: "msg-1", at: Date.now() };
+    entry.blocks[0].text = text;
+    entry.blocks[0].tokens = tokens;
+
+    const created = store.ingest(entry);
+    assert.ok(created.length > 0, "应至少生成一条红句 annotation");
+    const marks = store.forCapture(entry.id);
+    assert.ok(marks && marks.length > 0);
+    const mark = marks[0];
+    assert.equal(mark.verdict, "unsure");
+    assert.equal(mark.misjudge_reason, null);
+    assert.equal(mark.error_type, null);
+    assert.equal(mark.ambiguity_kind, null);
+    assert.ok(mark.markId.startsWith("mk-"));
+    assert.ok(mark.sentenceKey.startsWith("sk-"));
+    assert.ok(Array.isArray(mark.tokens) && mark.tokens.length > 0);
+    assert.equal(mark.turn, 1);
+    assert.equal(mark.step, 0);
+
+    const first = store.applyFeedback({
+      markId: mark.markId,
+      verdict: "highlighter_misjudge",
+      misjudge_reason: "paraphrase",
+      triggerIndex: 0,
+    });
+    assert.equal(first.ok, true);
+    assert.equal(mark.verdict, "highlighter_misjudge");
+    assert.equal(mark.misjudge_reason, "paraphrase");
+    assert.equal(mark.revision, 1);
+
+    const second = store.applyFeedback({
+      markId: mark.markId,
+      verdict: "highlighter_correct",
+      error_type: "conflicting_sources",
+    });
+    assert.equal(second.ok, true);
+    assert.equal(mark.verdict, "highlighter_correct");
+    assert.equal(mark.misjudge_reason, null, "非 misjudge 必须清空 reason");
+    assert.equal(mark.error_type, "conflicting_sources");
+    assert.equal(mark.revision, 2);
+
+    const third = store.applyFeedback({
+      markId: mark.markId,
+      verdict: "reasonable_ambiguity",
+      ambiguity_kind: "opening",
+    });
+    assert.equal(third.ok, true);
+    assert.equal(mark.verdict, "reasonable_ambiguity");
+    assert.equal(mark.ambiguity_kind, "opening");
+    assert.equal(mark.error_type, null);
+    assert.equal(mark.revision, 3);
+
+    const defaulted = store.applyFeedback({
+      markId: mark.markId,
+      verdict: "highlighter_misjudge",
+    });
+    assert.equal(defaulted.ok, true);
+    assert.equal(defaulted.record.misjudge_reason, "cannot_tell");
+    assert.equal(mark.revision, 4);
+
+    const invalid = store.applyFeedback({
+      markId: mark.markId,
+      verdict: "highlighter_misjudge",
+      misjudge_reason: "not-a-reason",
+    });
+    assert.equal(invalid.ok, false);
+    assert.equal(invalid.error, "invalid-misjudge-reason");
+
+    // 最后回到合理歧义，验证重启恢复的是最新 verdict。
+    store.applyFeedback({
+      markId: mark.markId,
+      verdict: "reasonable_ambiguity",
+      ambiguity_kind: "opening",
+    });
+
+    const annotations = await readFile(join(dir, "annotations.jsonl"), "utf8");
+    const feedback = await readFile(join(dir, "feedback.jsonl"), "utf8");
+    assert.ok(annotations.includes(mark.markId));
+    assert.ok(feedback.includes(mark.markId));
+
+    // 模拟 dsh 重启：新 store 从磁盘恢复 annotation/feedback。
+    const reopened = createAnnotationStore({
+      outputDir: dir,
+      config: {
+        annotationEnabled: true,
+        annotationStoreText: "sentence",
+        annotationMaxSentenceChars: 500,
+        annotationMaxFileBytes: 1024 * 1024,
+        annotationKeepFiles: 5,
+        topLogprobs: 5,
+        redThreshold: 0.05,
+      },
+      logger: quietLogger,
+    });
+    const restored = reopened.forSessionTurn("sess-ann", 1);
+    assert.ok(restored && restored.length > 0, "重启后应能按 session/turn 反查 annotation");
+    assert.equal(restored[0].verdict, "reasonable_ambiguity");
+    assert.equal(restored[0].ambiguity_kind, "opening");
+    assert.equal(restored[0].misjudge_reason, null);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
 });
 
 /* ------------------------------------------------------------------ *
